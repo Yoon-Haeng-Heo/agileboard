@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   PARAMETERS = %i(name phone user_type)
-
+  
+  has_many :user_projects
+  has_many :projects, through: :user_projects
   enum user_type: [:developer, :customer]
 end

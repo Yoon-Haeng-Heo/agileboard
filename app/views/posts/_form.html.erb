@@ -1,12 +1,13 @@
 <%= form_for Post.new do |f| %>
   <%= render 'shared/input', name: :title, type: :text_field, f: f, placeholder: "제목을 입력하세요" %>
-  <%= f.label :image, class: "mt-4" %>
+  <%= f.label :image, class: "mt-3" %>
   <div class="upload-preview">
     <%= f.file_field :image, class: "form-control-file file", placeholder: "Image" %>
     <img class="img-preview mt-2"/><br/><br/>
   </div>
+  <%= f.label :project_id %>
+  <%= f.select :project_id, options_for_select(Project.all.map {|p| [p.name, p.id]}), {}, class: "form-control mb-3" %>
   <%= f.label :body %>
-  <%= f.select :project_id, options_for_select(Project.all.map {|p| [p.name, p.id]}), {}, class: "form-control" %>
   <%= tinymce language: "en" %>
   <%= f.text_area :body, class: "form-control tinymce", rows: "20" %>
   <%= f.submit "#{f.object.new_record? ? '등록' : '수정'}", class: 'btn btn-primary btn-block mt-3' %>

@@ -14,9 +14,17 @@
         <a class="nav-link" href="#">Link</a>
       </li>
       <% if current_user %>
-        <li class="nav-item">
-          <%= link_to "프로젝트 게시판", posts_path, class: "nav-link" %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            프로젝트 게시판
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "게시글 보기", posts_path, class: "dropdwon-item" %>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
         </li>
+        <%= link_to "게시글 생성", new_post_path, class: "dropdwon-item" %>
         <li class="nav-item">
           <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>

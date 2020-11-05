@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   PARAMETERS = %i(name phone user_type)
 
+  has_many :posts
   enum user_type: [:developer, :customer]
 end

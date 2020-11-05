@@ -1,0 +1,6 @@
+<% placeholder ||= "입력하세요" %>
+
+<div class="form-group">
+  <%= f.label name %>
+  <%= f.send(type, name, {placeholder: placeholder}) %>
+</div>

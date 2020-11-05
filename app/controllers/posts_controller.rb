@@ -11,7 +11,6 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.create post_params
-    byebug
     redirect_to root_path
   end 
 

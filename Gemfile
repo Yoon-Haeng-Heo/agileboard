@@ -11,8 +11,6 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -32,6 +30,7 @@ gem 'activeadmin_addons'
 gem 'arctic_admin'
 
 gem 'bootstrap', '~> 4.3.1'
+gem 'webpacker', '~> 3.5'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'rails-i18n'
@@ -43,8 +42,13 @@ gem 'mini_magick'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'ransack'
 
+gem 'tinymce-rails'
+gem 'tinymce-rails-imageupload'
+gem "select2-rails"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'multi_json', '~> 1.11', '>= 1.11.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

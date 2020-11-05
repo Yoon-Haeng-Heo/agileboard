@@ -1,0 +1,11 @@
+ko:
+  attributes:
+
+  activerecord:
+    attributes:
+      user:
+        name: 이름
+        phone: 연락처
+        email: 이메일
+        password: 비밀번호
+        password_confirmation: 비밀번호 확인

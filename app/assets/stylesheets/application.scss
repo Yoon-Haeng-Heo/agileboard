@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap"; 
+
+.color-primary {
+  color: rgb(210, 106, 94);
+}
+.btn-primary {
+	color: #fff;
+	background-color: rgb(210, 106, 94);
+	border-color: rgb(210, 106, 94);
+}
+.btn-primary:hover {
+	color: #fff;
+	background-color: red;
+	border-color:red;
+}
+.btn-primary:active {
+  color: #fff;
+	background-color: red;
+	border-color:red;
+}
+.btn-primary:focus, .btn-primary.focus {
+	box-shadow: 0 0 0 2px rgb(210, 106, 94);
+}

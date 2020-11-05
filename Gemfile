@@ -29,6 +29,7 @@ gem 'devise-i18n'
 gem 'activeadmin'
 gem 'active_skin'
 gem 'activeadmin_addons'
+gem 'arctic_admin'
 
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
@@ -38,6 +39,9 @@ gem 'rails-i18n'
 # 파일 또는 이미지 첨부
 gem 'carrierwave'
 gem 'mini_magick'
+
+gem 'acts-as-taggable-on', '~> 6.0'
+gem 'ransack'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

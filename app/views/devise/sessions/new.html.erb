@@ -1,3 +1,10 @@
+<style>
+  body{
+    background-image: url("/image/background.jpg");
+    background-size: cover;
+  }
+</style>
+
 <div class="container">
   <div class="row">
     <div class="card col-md-6 offset-md-3 p-5 mt-5" style="border:2px solid warning; font-size:12px;">
@@ -24,12 +31,11 @@
           </div>
         <% end %>
         <div class="actions">
-          <%= f.submit "로그인", :class => 'btn btn-primary btn-block' %>
+          <%= f.submit "로그인", class: 'btn btn-primary btn-block' %>
         </div>
         <hr>
       <% end %>
     </div>
     <%= render "devise/shared/links" %>
   </div>
-</div>
 </div>

@@ -78,6 +78,7 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     acts-as-taggable-on (6.5.0)
       activerecord (>= 5.0, < 6.1)
+    acts_as_commentable (4.0.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     arbre (1.3.0)
@@ -270,6 +271,8 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    socialization (1.2.3)
+      activerecord
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -324,6 +327,7 @@ DEPENDENCIES
   activeadmin
   activeadmin_addons
   acts-as-taggable-on (~> 6.0)
+  acts_as_commentable
   arctic_admin
   bootsnap (>= 1.4.2)
   bootstrap (~> 4.3.1)
@@ -347,6 +351,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   select2-rails
   selenium-webdriver
+  socialization
   spring
   spring-watcher-listen (~> 2.0.0)
   tinymce-rails

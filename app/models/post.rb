@@ -1,4 +1,8 @@
 class Post < ApplicationRecord
+  acts_as_commentable
+
+  mount_uploader :image, ImageUploader
+
   belongs_to :user
   belongs_to :project
 

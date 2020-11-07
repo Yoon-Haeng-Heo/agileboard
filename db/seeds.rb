@@ -1,7 +1,7 @@
 TITLES = ["Ruby On Rails", "Spring Boot", "React", "Node Express", "Php", "Python and Django", "Android", "IOS"]
 IMAGES = ['/public/image/1.jpg', '/public/image/2.jpg', '/public/image/3.jpg', '/public/image/4.jpg']
 
-AdminUser.create!(email: 'admin@test.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
+# AdminUser.create!(email: 'admin@test.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
 
 def get_user
   User.order("RANDOM()").limit(1).first
@@ -51,6 +51,6 @@ def generate_posts
   end
 end
 
-generate_project
-generate_users
+# generate_project
+# generate_users
 generate_posts

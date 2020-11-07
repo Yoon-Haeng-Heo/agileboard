@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_05_175252) do
+ActiveRecord::Schema.define(version: 2020_11_06_094925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,30 @@ ActiveRecord::Schema.define(version: 2020_11_05_175252) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "comments", id: :serial, force: :cascade do |t|
+    t.string "title", limit: 50, default: ""
+    t.text "comment"
+    t.string "commentable_type"
+    t.integer "commentable_id"
+    t.integer "user_id"
+    t.string "role", default: "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["commentable_id"], name: "index_comments_on_commentable_id"
+    t.index ["commentable_type"], name: "index_comments_on_commentable_type"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "follows", id: :serial, force: :cascade do |t|
+    t.string "follower_type"
+    t.integer "follower_id"
+    t.string "followable_type"
+    t.integer "followable_id"
+    t.datetime "created_at"
+    t.index ["followable_id", "followable_type"], name: "fk_followables"
+    t.index ["follower_id", "follower_type"], name: "fk_follows"
+  end
+
   create_table "images", force: :cascade do |t|
     t.string "image"
     t.string "imageable_type", null: false
@@ -48,6 +72,26 @@ ActiveRecord::Schema.define(version: 2020_11_05_175252) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
+  end
+
+  create_table "likes", id: :serial, force: :cascade do |t|
+    t.string "liker_type"
+    t.integer "liker_id"
+    t.string "likeable_type"
+    t.integer "likeable_id"
+    t.datetime "created_at"
+    t.index ["likeable_id", "likeable_type"], name: "fk_likeables"
+    t.index ["liker_id", "liker_type"], name: "fk_likes"
+  end
+
+  create_table "mentions", id: :serial, force: :cascade do |t|
+    t.string "mentioner_type"
+    t.integer "mentioner_id"
+    t.string "mentionable_type"
+    t.integer "mentionable_id"
+    t.datetime "created_at"
+    t.index ["mentionable_id", "mentionable_type"], name: "fk_mentionables"
+    t.index ["mentioner_id", "mentioner_type"], name: "fk_mentions"
   end
 
   create_table "posts", force: :cascade do |t|

@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="text-right mt-3">
+    <%= link_to "목록", posts_path, class: "color-primary mr-2" %>
+    <%= link_to "수정", post_path(@post), class: "color-primary mr-2" %>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-8">
+      <img class="w-100 card-img-top" src="<%= @post.image %>">
+      <div class="card">
+        <div class="card-body">
+          <h4><%= @post.title %></h4>
+          <hr class="my-3">
+          <p><%= @post.body.html_safe rescue "" %></p>
+          <h5 class="mt-5 mb-4">댓글</h5>
+          <div class="p-4 bg-secondary border rounded">
+            <p>댓글이 없습니다</p>
+            <h5 class="mt-2 mb-4">댓글작성</h5>
+            <form class="new_comment" id="new_comment" action="/comments" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="TQ2pGEQ1mRE10GbbVtkA4D4TeKBRc786S3Lv1gl5jLO1cOhb3hkr3GQ5HcZX9IKHAgrBaImRp3cmDKbObxjLGQ==">
+              <div class="form-group">
+                <textarea placeholder="댓글을 입력해주세요 (마크다운 가능)" class="form-control" name="comment[body]" id="comment_body"></textarea>
+                <input value="Article" type="hidden" name="comment[commentable_type]" id="comment_commentable_type">
+                <input value="13" type="hidden" name="comment[commentable_id]" id="comment_commentable_id">
+              </div>
+              <button name="button" type="submit" class="btn btn-primary btn-md">입력</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% project = @post.project %>
+    <div class="col-md-4">
+      <div class=" mb-3">
+        <div class="card">
+          <div class="card-body" style="min-height:130px;">
+            <h5><%= project.name %></h5>
+            <div class="small text-muted">
+              <div>
+                <span>프로젝트 시작일: </span>
+                <span><%= pretty_date project.start_at %></span>
+              </div>
+              <div>
+                <span>프로젝트 마감일: </span>
+                <span><%= pretty_date project.end_at %></span>
+              </div>
+            </div>
+            <div>
+              <img class="w-100" src="<%= project.image %>">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

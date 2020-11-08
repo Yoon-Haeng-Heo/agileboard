@@ -7,4 +7,6 @@ class Post < ApplicationRecord
   belongs_to :project
 
   acts_as_taggable_on :participant
+
+  acts_as_commentable
 end

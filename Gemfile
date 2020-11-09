@@ -45,6 +45,8 @@ gem 'ransack'
 gem 'tinymce-rails'
 gem 'tinymce-rails-imageupload'
 gem "select2-rails"
+gem "socialization"
+gem 'acts_as_commentable'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

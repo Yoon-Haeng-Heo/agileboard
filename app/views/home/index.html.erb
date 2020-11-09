@@ -1,0 +1,28 @@
+<div class="container my-4">
+  <div class="active-pink-3 active-pink-4 mb-4">
+    <input class="form-control" type="text" placeholder="제목을 검색해보세요" aria-label="Search">
+  </div>
+  
+  <div class="row justify-content-">
+    <% @posts.each do |post| %>
+      <div class="col-md-4 mb-3">
+        <%= link_to post_path(post), class: "text-dark" do %>
+          <div class="card">
+            <img class="w-100 card-img-top" style="max-height: 160px;" src="<%= post.image.url %>">
+            <div class="card-body" style="min-height:130px;">
+              <div class="color-primary fs-14 mb-2"><%= post.project.name %></div>
+              <h5><%= post.title %></h5>
+              <div class="small text-muted mt-2">
+                <div class="color-gray">
+                  작성자: <%= post.user.email %> /
+                  <%= pretty_date post.created_at %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

@@ -7,7 +7,9 @@ class PostsController < ApplicationController
 
   def new;end
 
-  def show;end
+  def show
+    @comments = Comment.where(commentable_id: @post.id).reverse_order.page(params[:page]).per(3)
+  end
 
   def create
     @post = current_user.posts.create post_params

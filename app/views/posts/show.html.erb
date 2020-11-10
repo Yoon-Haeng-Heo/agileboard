@@ -12,25 +12,22 @@
           <hr class="my-3">
           <p><%= @post.body.html_safe rescue "" %></p>
           <h5 class="mt-5 mb-4">댓글</h5>
+          <div class="p-4 border rounded">
+            <%= form_for Comment.new do |f| %>
+              <%= f.hidden_field :commentable_type, value: "Post" %>
+              <%= f.hidden_field :commentable_id, value: @post.id %>
+              <%= f.text_area :comment, class: "form-control" %>
+              <%= f.submit "작성", class: "btn btn-primary btn-md mt-3" %>
+            <% end %>
+          </div>
           <div class="comment-list">
             <%@comments.each do |comment|%>
               <hr/>
-              <h6 style="color: navy"><%=User.find_by(id: comment.user_id).name%></h6>
+              <h6 style="color: navy"><%= comment.user.email%></h6>
               <small style="color:grey;"><%=pretty_date(comment.created_at)%></small>
               <p></p>
               <p><%=comment.comment%></p>
             <%end%>
-          </div>
-          <div class="p-4 bg-secondary border rounded">
-            <h5 class="mt-2 mb-4">댓글작성</h5>
-            <form class="new_comment" id="new_comment" action="/comments" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="TQ2pGEQ1mRE10GbbVtkA4D4TeKBRc786S3Lv1gl5jLO1cOhb3hkr3GQ5HcZX9IKHAgrBaImRp3cmDKbObxjLGQ==">
-              <div class="form-group">
-                <textarea placeholder="댓글을 입력해주세요 (마크다운 가능)" class="form-control" name="comment[body]" id="comment_body"></textarea>
-                <input value="Posts" type="hidden" name="comment[commentable_type]" id="comment_commentable_type">
-                <input value=<%=@post.id%> type="hidden" name="comment[commentable_id]" id="comment_commentable_id">
-              </div>
-              <button name="button" type="submit" class="btn btn-primary btn-md">입력</button>
-            </form>
           </div>
         </div>
       </div>

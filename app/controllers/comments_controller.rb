@@ -1,25 +1,13 @@
 class CommentsController < ApplicationController
 
     def create
-      @comment = Post.find_by(id: comment_params[:commentable_id]).comments.create
-      @comment.user_id = current_user.id
-      @comment.comment = comment_params[:body]
-      @comment.save
-      redirect_to post_path(comment_params[:commentable_id])
+      comment = current_user.comments.create comment_params
+      redirect_to post_path(comment.commentable)
     end
 
-    def update
-    end
-
-    def edit
-    end
-
-    def destroy
-    end
-  
     private
     def comment_params
-      params.require(:comment).permit(:body, :commentable_id, :commentable_type)
+      params.require(:comment).permit(:comment, :commentable_id, :commentable_type)
     end
   
     def load_comment

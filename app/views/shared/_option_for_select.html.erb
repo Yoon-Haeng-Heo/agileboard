@@ -1,0 +1,1 @@
+<%= f.select columns , options_for_select(User.all.map {|u| [u.name, u.id]}),{},{multiple: true , class: "form-control mb-3"}%>

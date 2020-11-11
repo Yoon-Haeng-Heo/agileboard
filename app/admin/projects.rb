@@ -18,7 +18,9 @@ ActiveAdmin.register Project do
     selectable_column
     id_column
     column :name
-    column :description
+    column :description do |project|
+      project.description.truncate(20,omission: '...')
+    end
     column :start_at
     column :end_at
     column :project_status

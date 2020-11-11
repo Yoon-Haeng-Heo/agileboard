@@ -29,6 +29,7 @@ def generate_users
     }
 
     User.customer.create(user_info)
+    User.last.user_projects.create(project: get_project)
     puts "고객 생성"
   end
 
@@ -41,6 +42,7 @@ def generate_users
     }
 
     User.developer.create(user_info)
+    User.last.user_projects.create(project: get_project)
     puts "개발자 생성"
   end
 end

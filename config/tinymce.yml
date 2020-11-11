@@ -1,10 +1,10 @@
- relative_urls : false
-remove_script_host : false
-convert_urls : true
+#  relative_urls : false
+# remove_script_host : false
+# convert_urls : true
 
-height: 700
+# height: 700
 
-branding: false
+# branding: false
 
 toolbar:
   - styleselect fontselect fontsizeselect | bold italic | undo redo media link | uploadimage | codesample | alignleft aligncenter alignright | charmap

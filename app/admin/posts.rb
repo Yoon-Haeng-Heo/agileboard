@@ -10,7 +10,9 @@ ActiveAdmin.register Post do
     selectable_column
     id_column
     column :title
-    column :body
+    column :body do |post|
+      post.body.truncate(20,omission: '...')
+    end
     column :user_id
     column :tag_list
     column :skill_list

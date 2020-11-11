@@ -23,6 +23,15 @@
         <li class="nav-item mr-3">
           <div class="nav-link text-white"><%= current_user.email %>님</div>
         </li>
+        <li class="nav-item dropdown mr-3">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            기능 게시판
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "기능 보기", functions_path, class: "dropdown-item" %>
+            <%= link_to "기능 생성", new_function_path, class: "dropdown-item" %>
+          </div>
+        </li>
         <li class="nav-item mr-3">
           <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class: "nav-link text-white" %>
         </li>

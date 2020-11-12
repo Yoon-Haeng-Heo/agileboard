@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :load_post, only: %i(show edit destroy)
 
   def index
+    @posts = Post.all.page(params[:page]).per(9)
   end
 
   def new;end

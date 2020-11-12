@@ -1,0 +1,30 @@
+<style>
+  .post-card {
+    border: none;
+    margin-bottom: 20px;
+  }
+  .post-card-img {
+    width: 100%;
+    height: 100%;
+    max-height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+</style>
+
+<div class="col-md-4 mb-3 px-3">
+  <div class="card post-card">
+    <img class="post-card-img card-img-top" src="<%= post.image.url %>">
+    <div class="card-body px-2">
+      <%= link_to post_path(post), class: "text-dark" do %>
+        <h5 class="font-weight-bold"><%= post.title %></h5>
+      <% end %>
+      <p class="card-text"><%= post.body.truncate(120) %></p>
+      <div class="row justify-content-between small text-muted mt-2 px-3">
+        <div class="color-primary"><%= post.project.name %></div>
+        <div class="color-gray"><%= pretty_date post.created_at %></div>
+      </div>
+    </div>
+  </div>
+</div>

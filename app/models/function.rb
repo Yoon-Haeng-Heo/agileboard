@@ -1,7 +1,10 @@
 class Function < ApplicationRecord
+  include AASM
+
   acts_as_taggable_on :tags
   acts_as_taggable_on :users
-  include AASM
+
+  belongs_to :project
 
   aasm do
     state :to_do, initial: true
@@ -25,8 +28,5 @@ class Function < ApplicationRecord
     event :finish do
       transitions from: :feedback, to: :end
     end
-
   end
-
-  belongs_to :project
 end

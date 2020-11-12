@@ -16,6 +16,8 @@
 //= require tinymce
 //= require tinymce-jquery
 //= require select2
+//= require chartkick
+//= require Chart.bundle
 
 tinyMCE.init({
   selector: "textarea.tinymce",

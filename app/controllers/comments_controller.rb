@@ -1,16 +1,10 @@
 class CommentsController < ApplicationController
-  before_action :load_commentable, only: %i(create new)
-  before_action :load_comment, only: %i(destroy edit update)
+  before_action :load_commentable, only: %i(create)
+  before_action :load_comment, only: %i(destroy)
 
   def create
     @comment = @commentable.comments.create comment_params
   end
-
-  def update
-    @comment.update comment_params
-  end
-
-  def edit;end
 
   def destroy
     @comment.destroy

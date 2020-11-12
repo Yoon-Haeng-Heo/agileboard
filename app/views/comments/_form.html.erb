@@ -1,0 +1,9 @@
+<%= form_for @comment ||= Comment.new, method: :post,remote: true do |f|%>
+  <div class="form-group">
+  <%= f.text_area :comment, id: "input_form", class: "form-control", placeholder: "입력 란" %> 
+  <%= f.hidden_field :commentable_type, value: "Posts" %>
+  <%= f.hidden_field :commentable_id, value: commentable.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <%= f.submit "입력", class: "btn btn-primary btn-md" %>
+<% end %>

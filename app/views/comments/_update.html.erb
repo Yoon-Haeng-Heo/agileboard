@@ -1,0 +1,7 @@
+<div id="comment-list-<%=@comment.id%>">
+  <hr/>
+  <h6 style="color: navy"><%=User.find_by(id: @comment.user_id).name%></h6>
+  <small style="color:grey;"><%=pretty_date(@comment.created_at)%></small>
+  <p></p>
+  <p><%=@comment.comment%></p>
+</div>

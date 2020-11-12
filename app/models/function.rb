@@ -9,6 +9,23 @@ class Function < ApplicationRecord
     state :complete
     state :feedback
     state :end
+
+    event :progress do
+      transitions from: :to_do, to: :in_progress
+    end
+
+    event :complete do
+      transitions from: :in_progress, to: :complete
+    end
+
+    event :feedback do
+      transitions from: :complete, to: :feedback
+    end
+
+    event :finish do
+      transitions from: :feedback, to: :end
+    end
+
   end
 
   belongs_to :project

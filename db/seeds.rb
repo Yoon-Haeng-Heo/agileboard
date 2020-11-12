@@ -6,6 +6,9 @@ IMAGES = ['/public/image/test1.jpg', '/public/image/test2.jpg', '/public/image/t
 def get_user
   User.order("RANDOM()").limit(1).first
 end 
+def get_users
+  User.order("RANDOM()").limit(3)
+end
 
 def get_project
   Project.order("RANDOM()").limit(1).first
@@ -29,7 +32,6 @@ def generate_users
     }
 
     User.customer.create(user_info)
-    User.last.user_projects.create(project: get_project)
     puts "고객 생성"
   end
 
@@ -42,9 +44,15 @@ def generate_users
     }
 
     User.developer.create(user_info)
-    User.last.user_projects.create(project: get_project)
     puts "개발자 생성"
   end
+end
+
+def generate_userprojects
+  15.times do
+    get_user.user_projects.create(project: get_project)
+  end
+  puts "프로젝트에 유저 추가"
 end
 
 def generate_posts
@@ -55,6 +63,16 @@ def generate_posts
   end
 end
 
+def generate_functions
+  5.times do
+    function = Function.new(title: Faker::Hacker.adjective + " 구현하기" ,description: Faker::Hacker.say_something_smart, start_at: Date.today, end_at: Date.today + 10.days , project: get_project, user_list: [])
+    function.user_list.add(get_users.ids)
+    function.save
+  end
+  puts "기능 생성"
+end
 generate_project
 generate_users
+generate_userprojects
 generate_posts
+generate_functions

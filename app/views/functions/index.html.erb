@@ -1,3 +1,54 @@
-<div class="container">
-hello
+<%= render 'shared/section',title: "기능 보기" %>
+<div class="container py-5">
+  <h4>Functions</h4>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Project_Name</th>
+      <th scope="col">User_List</th>
+      <th scope="col">Status</th>
+      <th scope="col">Start_date</th>
+      <th scope="col">Due_date</th>
+      <th scope="col">Tags</th>
+      <th scope="col">Created_date</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @functions.each do |f| %>
+    <% users = User.where(id: f.user_list).pluck(:name) %>
+    <tr>
+      <th scope="row"><%= f.id %></th>
+      <td><%= link_to "#{f.title}", function_path(f.id), class: "color-primary mr-2" %></td>
+      <td><%= f.project.name%></td>
+      <td>  
+        <% users.each do |users| %>
+          <div class="badge badge-info" style="padding: 7px;">
+            <%= users %><br>
+          </div>
+        <% end %>
+      </td>
+
+      <td class="badge badge-primary" style="padding: 7px; margin: 10px; "><%= f.aasm_state%></td>
+      <td><%= f.start_at.strftime("%Y-%m-%d")%></td>
+      <td><%= f.end_at.strftime("%Y-%m-%d")%></td>
+      <td><%= f.tag_list%></td>
+      <td><%= f.created_at.strftime("%Y-%m-%d")%></td>
+      <td>
+        <%= link_to "수정", functions_path, class: "btn btn-primary", id:"testBtn" %>
+        <%= render 'shared/modal', f: f %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>    
+</table>
 </div>
+
+<script>
+	$('#testBtn').click(function(e){
+		e.preventDefault();
+		$('#exampleModal').modal("show");
+	});
+</script>

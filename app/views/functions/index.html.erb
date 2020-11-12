@@ -5,6 +5,7 @@
 </style>
 
 <%= render 'shared/section',title: "기능 보기" %>
+
 <div class="container py-5">
   <div class="project-chart mb-5">
     <h5 class="mb-2">작업 현황</h5>
@@ -39,8 +40,7 @@
           <td><%= function.end_at.strftime("%Y-%m-%d") %></td>
           <td><%= function.tag_list %></td>
           <td>
-            <%= link_to "수정", functions_path, class: "color-primary", id:"testBtn" %>
-            <%= render 'shared/modal', f: function %>
+            <%= link_to "수정", "#", class: "editBtn color-primary", data: {id: function.id} %>
           </td>
         </tr>
       <% end %>
@@ -49,9 +49,17 @@
   </div>
 </div>
 
+<div class="edit-modal"></div>
+
 <script>
-	$('#testBtn').click(function(e){
-		e.preventDefault();
-		$('#exampleModal').modal("show");
-	});
+	$('.editBtn').click(function(e){
+    Rails.ajax({
+      url: "/functions/"+$(this).data("id")+"/edit",
+      type: "get",
+      success: function(data) {
+        $('#function-modal-' + $(this).data("id")).modal('show');
+      },
+      error: function(data) {}
+  });});
 </script>
+

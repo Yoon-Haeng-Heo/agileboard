@@ -1,4 +1,5 @@
 <%= render 'shared/section',title: "기능 보기" %>
+
 <div class="container py-5">
   <h4>Functions</h4>
   <table class="table">
@@ -18,6 +19,7 @@
   </thead>
   <tbody>
   <% @functions.each do |f| %>
+  
     <% users = User.where(id: f.user_list).pluck(:name) %>
     <tr>
       <th scope="row"><%= f.id %></th>
@@ -37,8 +39,7 @@
       <td><%= f.tag_list%></td>
       <td><%= f.created_at.strftime("%Y-%m-%d")%></td>
       <td>
-        <%= link_to "수정", functions_path, class: "btn btn-primary", id:"testBtn" %>
-        <%= render 'shared/modal', f: f %>
+        <button class="testBtn" class="btn btn-primary" data-id="<%=f.id%>">수정<%= f.id %></button>
       </td>
     </tr>
   <% end %>
@@ -46,9 +47,17 @@
 </table>
 </div>
 
+<div class="edit-modal"></div>
+
 <script>
-	$('#testBtn').click(function(e){
-		e.preventDefault();
-		$('#exampleModal').modal("show");
-	});
+	$('.testBtn').click(function(e){
+    Rails.ajax({
+      url: "/functions/"+$(this).data("id")+"/edit",
+      type: "get",
+      success: function(data) {
+        $('#function-modal-' + $(this).data("id")).modal('show');
+      },
+      error: function(data) {}
+  });});
 </script>
+

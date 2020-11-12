@@ -1,12 +1,13 @@
 class FunctionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_function, only: %i(show)
+  before_action :load_function, only: %i(index show edit)
   
   def index
     @functions = Function.all
   end
 
   def new
+    @function = Function.new
   end
   
   def show
@@ -15,6 +16,9 @@ class FunctionsController < ApplicationController
   def create
     @function = Function.create function_params
     redirect_to functions_path
+  end 
+
+  def edit 
   end 
 
   def function_params

@@ -12,23 +12,12 @@
           <hr class="my-3">
           <p><%= @post.body.html_safe rescue "" %></p>
           <h5 class="mt-5 mb-4">댓글</h5>
-          <div class="p-4 border rounded">
-            <%= form_for Comment.new do |f| %>
-              <%= f.hidden_field :commentable_type, value: "Post" %>
-              <%= f.hidden_field :commentable_id, value: @post.id %>
-              <%= f.text_area :comment, class: "form-control" %>
-              <%= f.submit "작성", class: "btn btn-primary btn-md mt-3" %>
+          <div id="comment-list">
+            <% @comments.each do |comment| %>
+              <%= render partial: "comments/show", locals: {comment: comment} %>
             <% end %>
           </div>
-          <div class="comment-list">
-            <%@comments.each do |comment|%>
-              <hr/>
-              <h6 style="color: navy"><%= comment.user.email%></h6>
-              <small style="color:grey;"><%=pretty_date(comment.created_at)%></small>
-              <p></p>
-              <p><%=comment.comment%></p>
-            <%end%>
-          </div>
+          <%= render partial:"comments/new", locals: {commentable: @post} %>
         </div>
       </div>
     </div>

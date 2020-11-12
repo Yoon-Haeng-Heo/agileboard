@@ -1,0 +1,17 @@
+<div id="box-<%= comment.id %>">
+  <div id="comment-list-<%=comment.id%>">
+    <hr/>
+    <h6 style="color: navy"><%=User.find_by(id: comment.user_id).name%></h6>
+    <small style="color:grey;"><%=pretty_date(comment.created_at)%></small>
+    <p></p>
+    <p><%=comment.comment%></p>
+  </div> 
+  <p style="text-align:right">
+    <%= link_to edit_comment_path(comment.id), remote: true do%>
+      <button type="button" class="btn btn-secondary btn-sm">수정</button>
+    <%end%>
+    <%= link_to comment_path(comment.id), method: :delete, remote: true do %>
+      <button type="button" class="btn btn-secondary btn-sm">삭제</button>
+    <%end%>
+  </p>
+</div>

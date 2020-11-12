@@ -1,51 +1,40 @@
 class CommentsController < ApplicationController
+  before_action :load_commentable, only: %i(create new)
+  before_action :load_comment, only: %i(destroy edit update)
 
-    def create
-      comment = current_user.comments.create comment_params
-      redirect_to post_path(comment.commentable)
-    end
+  def create
+    @comment = @commentable.comments.create comment_params
+  end
 
-    private
-    def comment_params
-      params.require(:comment).permit(:comment, :commentable_id, :commentable_type)
-    end
-  
-    def load_comment
-      @comment = Comment.find_by(id: params[:id])
-    end
+  def update
+    @comment.update comment_params
+  end
 
-    def load_commentable
-      @post = Post.find_by(id: params[:comment][:commentable_id])
-    end
+  def edit;end
+
+  def destroy
+    @comment.destroy
+  end
+
+  private
+  def comment_params
+    params.require(:comment).permit(:comment, :commentable_id, :commentable_type, :user_id)
+  end
+
+  def load_comment
+    @comment = Comment.find_by(id: params[:id])
+  end
+
+  def load_commentable
+    # pass 순서
+    # post/show.html.erb에서 local로 commentable = @post
+    # _new.html.erb에서 commentable.id가 넘어온다
+    @commentable = Post.find_by(id: params[:comment][:commentable_id])
+  end
 end
 
-=begin 대댓글기능
-
-https://dev.to/lucysuddenly/nested-comments-in-ruby-on-rails-1k1f
-
-before_action :find_commentable, only: :create
-
-    def new
-      @comment = Comment.new
-    end
-
-    def create
-      @commentable.comments.build(comment_params)
-      @commentable.save
-    end
-
-    private
-
-    def comment_params
-      params.require(:comment).permit(:content)
-    end
-
-    def find_commentable
-      if params[:comment_id]
-        @commentable = Comment.find_by_id(params[:comment_id]) 
-      elsif params[:post_id]
-        @commentable = Post.find_by_id(params[:post_id])
-      end
-    end
-    
+=begin
+  
+params[:comment][:commentable_type]=="Comment" ?  @commentable = Comment.find_by(id: params[:comment][:commentable_id]) : 
+  
 =end

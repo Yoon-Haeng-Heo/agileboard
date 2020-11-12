@@ -1,0 +1,11 @@
+<div class="p-4 bg-secondary border rounded">
+<h5 class="mt-2 mb-4">댓글수정</h5>
+  <%= form_for @comment, url: comment_path, method: :put, remote: true do |f|%>
+    <div class="form-group">
+    <%= f.text_area :comment, id: "input_form", class: "form-control", placeholder: "댓글을 입력해주세요 (마크다운 가능)" %>
+    <%= f.hidden_field :commentable_id, value: @comment.commentable.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    </div>
+    <%= f.submit "수정", class: "btn btn-primary btn-md" %>
+  <% end %>
+</div>

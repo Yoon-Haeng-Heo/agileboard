@@ -4,6 +4,8 @@ class FunctionsController < ApplicationController
   
   def index
     @functions = Function.all
+    @sort = @functions.ransack(params[:q])
+    @sort_functions = @sort.result
   end
 
   def new

@@ -17,13 +17,20 @@
       <table class="table">
         <thead>
           <tr>
-            <% %i(항목 이름 프로젝트 참가자 상태 시작일 마감일 비고 기타).each do |type| %>
-              <th scope="col"><%= type %></th>
-            <% end %>
+              <th scope="col"><%= sort_link(@sort, :id, "항목") %></th>
+              <th scope="col"><%= sort_link(@sort, :title, "이름") %></th>
+              <th scope="col"><%= sort_link(@sort, :project_name, "프로젝트") %></th>
+              <th scope="col"><%= sort_link(@sort, :user_list, "참가자") %></th>
+              <th scope="col"><%= sort_link(@sort, :aasm_state, "상태") %></th>
+              <th scope="col"><%= sort_link(@sort, :start_at, "시작일") %></th>            
+              <th scope="col"><%= sort_link(@sort, :end_at, "마감일") %></th>
+              <th scope="col"><%= sort_link(@sort, :tag_list, "비고") %></th>
+              <th scope="col">기타</th>
           </tr>
         </thead>
       <tbody>
-      <% @functions.each do |function| %>
+      
+      <% @sort_functions.each do |function| %>
         <% users = User.where(id: function.user_list).pluck(:name) %>
         <tr>
           <th scope="row"><%= function.id %></th>

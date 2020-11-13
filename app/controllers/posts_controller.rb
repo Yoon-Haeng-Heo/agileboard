@@ -2,6 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i(index)
   before_action :load_post, only: %i(show edit destroy)
 
+  def search
+    @result = Post.ransack(title_i_cont: params[:q], body_i_cont: params[:q], m: 'or').result.page(params[:page]).per(9)
+  end
+
   def index
     @posts = Post.all.page(params[:page]).per(9)
   end

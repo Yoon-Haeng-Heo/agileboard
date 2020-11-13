@@ -14,12 +14,19 @@
     width: 100%;
     max-height: 450px;
   }
+  
 </style>
 
 <div class='container my-4'>
-  <div class="active-pink-3 active-pink-4 mb-4">
-    <input class="form-control" type="text" placeholder="제목을 검색해보세요" aria-label="Search">
-  </div>
+  <form method="get" action="posts/search">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="검색" aria-label="search" aria-describedby="button-addon2" name="q">
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="submit" id="button-addon2">검색</button>
+      </div>
+    </div>
+  </form>
+  <p></p>
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>

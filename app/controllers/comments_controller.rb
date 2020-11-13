@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :load_commentable, only: %i(create)
   before_action :load_comment, only: %i(destroy)
-
+  
   def create
     @comment = @commentable.comments.create comment_params
   end
@@ -26,9 +26,3 @@ class CommentsController < ApplicationController
     @commentable = Post.find_by(id: params[:comment][:commentable_id])
   end
 end
-
-=begin
-  
-params[:comment][:commentable_type]=="Comment" ?  @commentable = Comment.find_by(id: params[:comment][:commentable_id]) : 
-  
-=end

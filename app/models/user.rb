@@ -12,4 +12,6 @@ class User < ApplicationRecord
 
   has_many :posts
   enum user_type: [:developer, :customer]
+
+  acts_as_mentionable
 end

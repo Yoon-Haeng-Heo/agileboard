@@ -4,20 +4,18 @@ class CommentsController < ApplicationController
   
   def create
     mentionee = []
-    content = ''
-    name_pattern = /[@][가-힣]\s[가-힣][가-힣]/
-    not_name_pattern = /\b(?!\b[@][가-힣]\s[가-힣][가-힣]\b)[\W\w]+\b/
+    name_pattern = /[@|\s@][가-힣]\s[가-힣][가-힣]/
     extracted_names = params[:comment][:comment].scan(name_pattern)
-    extracted_names.each do |name| 
-      mentionee << name[1..] 
-      content += name[1..] + ' '
-    end
+    extracted_names.each do |name| mentionee << name[1..] end
     if mentionee.size != 0
       @comment = @commentable.comments.new
+      @comment.comment =''
       mentionee.each do |name| @comment.mention!(User.find_by(name: name)) end
-      @comment.comment = content
-      params[:comment][:comment].scan(not_name_pattern).each do |comment| @comment.comment += comment end
-      byebug
+      params[:comment][:comment].each_char do |char|
+        if char != '@'
+          @comment.comment += char 
+        end
+      end
       @comment.commentable_id = params[:comment][:commentable_id]
       @comment.commentable_type = params[:comment][:commentable_type]
       @comment.user_id = params[:comment][:user_id]

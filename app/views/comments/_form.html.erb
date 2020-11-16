@@ -7,3 +7,27 @@
   </div>
   <%= f.submit "입력", class: "btn btn-primary btn-md" %>
 <% end %>
+
+<%
+  key_value_pairs = User.all.map do |user|
+                      [user.id,user.name]
+                    end
+  @mentionee = Hash[*key_value_pairs.flatten]
+%>
+
+<script>
+  var users = JSON.parse('<%=raw @mentionee.to_json%>');
+  var mentionee = new Array();
+  for(id in users){
+    var tmp = new Object();
+    tmp.key = users[id];
+    tmp.value = id.toString();
+    mentionee.push(tmp);
+  }
+  var tribute = new Tribute({ 
+    values: mentionee,
+    lookup: 'key',
+    fillAttr: 'key'
+  });
+  tribute.attach(document.getElementById('input_form'));
+</script>

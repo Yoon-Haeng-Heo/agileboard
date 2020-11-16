@@ -297,6 +297,7 @@ GEM
     tinymce-rails-imageupload (3.5.8.6)
       railties (>= 3.1)
       tinymce-rails (~> 3.5.8.1)
+    tribute (3.6.0.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     warden (1.2.9)
@@ -364,6 +365,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   tinymce-rails
   tinymce-rails-imageupload
+  tribute
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers

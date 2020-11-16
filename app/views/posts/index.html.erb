@@ -12,7 +12,7 @@
     background-size: 100% 100% !important;
     background-repeat: no-repeat;
     width: 100%;
-    max-height: 450px;
+    max-height: 350px;
   }
 </style>
 
@@ -21,20 +21,13 @@
     <input class="form-control" type="text" placeholder="제목을 검색해보세요" aria-label="Search">
   </div>
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-  </ol>
   <div class="carousel-inner">
     <% Project.all.limit(5).each_with_index do |project, index| %>
       <div class="carousel-item <%= "active" if index == 0 %>">
         <img class="banner" src="<%= project.image.url %>" alt="First slide">
         <div class="carousel-caption d-none d-md-block">
           <h2 class="font-weight-bold"><%= project.name %></h2>
-          <h4><%= project.description.truncate(15) %></h4>
+          <h4><%= project.description.truncate(50) %></h4>
         </div>
       </div>
     <% end %>
@@ -48,7 +41,12 @@
     <span class="sr-only">Next</span>
   </a>
   </div>
-  <p></p>
+  
+  <div class="row justify-content-between font-weight-bold mt-5 px-4">
+    <h4>게시글</h4>
+    <div><%= @posts.count %>개</div>
+  </div>
+  <hr class="mt-1 mb-3 color-gray"/>
   <div class="row justify-content-space-around">
     <% @posts.each do |post| %>
       <%= render post %>

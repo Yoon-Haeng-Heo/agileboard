@@ -12,18 +12,17 @@ class CommentsController < ApplicationController
       mentionee << name[1..] 
       content += name[1..] + ' '
     end
-    if mentionee
+    byebug
+    if mentionee.size != 0
       @comment = @commentable.comments.new
-      mentionee.each do |name|
-        @comment.mention!(User.find_by(name: name))
-      end
+      mentionee.each do |name| @comment.mention!(User.find_by(name: name)) end
       @comment.comment = content
       params[:comment][:comment].scan(not_name_pattern).each do |comment| @comment.comment += comment end
       @comment.commentable_id = params[:comment][:commentable_id]
       @comment.commentable_type = params[:comment][:commentable_type]
       @comment.user_id = params[:comment][:user_id]
       @comment.save
-    else 
+    else
       @comment = @commentable.comments.create comment_params
     end
   end

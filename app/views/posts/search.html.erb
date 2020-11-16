@@ -1,0 +1,29 @@
+<style>
+  .container {
+    max-width: 1240px !important;
+  }
+  .pagination .page.current {
+    background-color: transparent !important;
+    color: rgb(7, 3, 130) !important;
+    padding: 0 8px 0 8px !important;
+  }
+  .banner{
+    overflow: hidden;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat;
+    width: 100%;
+    max-height: 450px;
+  }
+  
+</style>
+
+<div class='container my-4'>
+  <div class="row justify-content-space-around">
+    <% @result.each do |post| %>
+        <%= render post %>
+    <% end %>
+  </div>
+  <div class="pagination justify-content-center mt-3">
+    <%= paginate @result %>
+  </div>
+</div>

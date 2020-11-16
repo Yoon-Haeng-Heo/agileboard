@@ -13,7 +13,11 @@ Rails.application.routes.draw do
       get :project_posts
     end
   end
-  resources :posts
+  resources :posts do
+    collection do
+      get :search
+    end
+  end
   resources :comments
   resources :functions
 end

@@ -51,6 +51,9 @@ gem 'aasm', '~> 5.1.1'
 gem "chartkick"
 gem 'groupdate'
 
+# 멘션 기능
+gem 'tribute'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'multi_json', '~> 1.11', '>= 1.11.2'

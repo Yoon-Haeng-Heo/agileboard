@@ -1,3 +1,11 @@
+<style>
+  .pagination .page.current {
+    background-color: transparent !important;
+    color: rgb(7, 3, 130) !important;
+    padding: 0 8px 0 8px !important;
+  }
+</style>
+
 <div class="container">
   <div class="text-right mt-3">
     <%= link_to "목록", posts_path, class: "color-primary mr-2" %>
@@ -17,6 +25,9 @@
             <% @comments.each do |comment| %>
               <%= render partial: "comments/comment", locals: {comment: comment} %>
             <% end %>
+          </div>
+          <div class="pagination justify-content-center mt-3">
+            <%= paginate @comments %>
           </div>
         </div>
       </div>

@@ -1,4 +1,11 @@
 ko:
+  aasm_state:
+    to_do: 할 일
+    in_progress: 진행 중
+    complete: 개발 완료
+    feedback: 피드백 중
+    end: 기능 완성
+
   attributes:
 
   activerecord:
@@ -16,3 +23,4 @@ ko:
         image: 대표 이미지
         project: 프로젝트
         project_id: 프로젝트
+      

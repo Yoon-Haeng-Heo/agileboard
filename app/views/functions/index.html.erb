@@ -17,15 +17,9 @@
       <table class="table">
         <thead>
           <tr>
-              <th scope="col"><%= sort_link(@sort, :id, "항목") %></th>
-              <th scope="col"><%= sort_link(@sort, :title, "이름") %></th>
-              <th scope="col"><%= sort_link(@sort, :project_name, "프로젝트") %></th>
-              <th scope="col"><%= sort_link(@sort, :user_list, "참가자") %></th>
-              <th scope="col"><%= sort_link(@sort, :aasm_state, "상태") %></th>
-              <th scope="col"><%= sort_link(@sort, :start_at, "시작일") %></th>            
-              <th scope="col"><%= sort_link(@sort, :end_at, "마감일") %></th>
-              <th scope="col"><%= sort_link(@sort, :tag_list, "비고") %></th>
-              <th scope="col">기타</th>
+              <% [["id", "항목"] ,["title","이름"],["project_name","프로젝트"],["user_list","참가자"],["aasm_state","상태"],["start_at","시작일"],["end_at","마감일"],["tag_list","비고"],[" ","기타"]].each do |item| %>
+                <th scope="col"><%= sort_link(@sort, item.first, item.last) %></th>
+              <% end %>
           </tr>
         </thead>
       <tbody>

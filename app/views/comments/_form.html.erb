@@ -20,14 +20,17 @@
   var mentionee = new Array();
   for(id in users){
     var tmp = new Object();
-    tmp.key = users[id];
-    tmp.value = id.toString();
+    tmp.name = users[id];
+    tmp.id = id.toString();
     mentionee.push(tmp);
   }
   var tribute = new Tribute({ 
     values: mentionee,
-    lookup: 'key',
-    fillAttr: 'key'
+    selectTemplate: function (item) {
+      return "@"+ item.original.name;
+    },
+    lookup: 'name',
+    fillAttr: 'id'
   });
   tribute.attach(document.getElementById('input_form'));
 </script>

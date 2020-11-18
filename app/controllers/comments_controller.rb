@@ -3,17 +3,26 @@ class CommentsController < ApplicationController
   before_action :load_comment, only: %i(destroy)
   
   def create
-    mentionee = params[:comment][:comment].split(/[@]+/).each {|name| [name]}
-    while mentionee.include?("")
-      mentionee.delete_at(mentionee.index(""))
+    mentionee = []
+    name_pattern = /[@|\s@][가-힣]\s[가-힣][가-힣]/
+    extracted_names = params[:comment][:comment].scan(name_pattern)
+    extracted_names.each do |name| mentionee << name[1..] end
+    if mentionee.size != 0
+      @comment = @commentable.comments.new
+      @comment.comment =''
+      mentionee.each do |name| @comment.mention!(User.find_by(name: name)) end
+      params[:comment][:comment].each_char do |char|
+        if char != '@'
+          @comment.comment += char 
+        end
+      end
+      @comment.commentable_id = params[:comment][:commentable_id]
+      @comment.commentable_type = params[:comment][:commentable_type]
+      @comment.user_id = params[:comment][:user_id]
+      @comment.save
+    else
+      @comment = @commentable.comments.create comment_params
     end
-    mentionee = mentionee.map do |name| name.rstrip end
-    tmp = []
-    mentionee.each do |name|
-      # 여기서 멘션 작업할 것
-      tmp << User.ransack(name_cont: name).result
-    end
-    @comment = @commentable.comments.create comment_params
   end
 
   def destroy

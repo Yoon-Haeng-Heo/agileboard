@@ -1,0 +1,41 @@
+<h5>작업 리스트</h5>
+<table class="table">
+  <thead>
+    <tr>
+      <% %>
+      <th scope="col"><%= sort_link(@sort, :id, "항목") %></th>
+      <th scope="col"><%= sort_link(@sort, :title, "이름") %></th>
+      <th scope="col"><%= sort_link(@sort, :project_name, "프로젝트") %></th>
+      <th scope="col"><%= sort_link(@sort, :user_list, "참가자") %></th>
+      <th scope="col"><%= sort_link(@sort, :aasm_state, "상태") %></th>
+      <th scope="col"><%= sort_link(@sort, :start_at, "시작일") %></th>            
+      <th scope="col"><%= sort_link(@sort, :end_at, "마감일") %></th>
+      <th scope="col"><%= sort_link(@sort, :tag_list, "비고") %></th>
+      <th scope="col">기타</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sort_functions.each do |function| %>
+      <% users = User.where(id: function.user_list).pluck(:name) %>
+      <tr>
+        <th scope="row"><%= function.id %></th>
+        <td><%= link_to "#{function.title}", function_path(function.id), class: "color-primary mr-2" %></td>
+        <td><%= function.project.name%></td>
+        <td>  
+          <% users.each do |users| %>
+            <span class="mx-1 color-primary">#&nbsp;<%= users %></span>
+          <% end %>
+        </td>
+
+        <td class="badge badge-primary" style="padding: 7px; margin: 10px; "><%= function.aasm_state%></td>
+        <td><%= function.start_at.strftime("%Y-%m-%d") %></td>
+        <td><%= function.end_at.strftime("%Y-%m-%d") %></td>
+        <td><%= function.tag_list %></td>
+        <td>
+          <%= link_to "수정", "#", class: "editBtn color-primary", data: {id: function.id} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>    
+</table>

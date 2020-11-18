@@ -1,5 +1,6 @@
 <style>
   .container {
+    background-color: white;
     max-width: 1240px !important;
   }
   .pagination .page.current {
@@ -13,12 +14,17 @@
     background-repeat: no-repeat;
     width: 100%;
     max-height: 350px;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) !important;
   }
-  
+  img {
+    position:relative;
+    z-index:-1;
+    display:block;
+  }
 </style>
 
 <div class='container my-4'>
-  <form method="get" action="posts/search">
+  <form class="pt-3" method="get" action="posts/search">
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="검색" aria-label="search" aria-describedby="button-addon2" name="q">
       <div class="input-group-append">

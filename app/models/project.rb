@@ -4,7 +4,7 @@ class Project < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :user_projects
   has_many :users, through: :user_projects
-  has_many :functions
+  has_many :functions, dependent: :destroy
 
   enum project_status: %i(not_started in_progress complete)
 end

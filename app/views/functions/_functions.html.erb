@@ -1,0 +1,32 @@
+<table class="table mt-5 mx-3">
+  <thead>
+    <tr>
+      <% [[:id, "항목"], [:title, "이름"], [:user_list, "참가자"], [:assm_state, "상태"], [:start_at, "시작일"], [:end_at, "마감일"], [:tag_list, "비고"]].each do |item| %>
+        <th scope="col"><%= sort_link(@sort, item[0], item[1]) %></th>
+      <% end %>
+      <th scope="col">기타</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sort_functions.each do |function| %>
+      <% users = User.where(id: function.user_list).pluck(:name) %>
+      <tr>
+        <th scope="row"><%= function.id %></th>
+        <td><%= link_to "#{function.title}", function_path(function.id), class: "color-primary mr-2" %></td>
+        <td>  
+          <% users.each do |users| %>
+            <span class="mx-1 color-primary">#&nbsp;<%= users %></span>
+          <% end %>
+        </td>
+        <td class="badge badge-primary" style="padding: 7px; margin: 10px; "><%= function.aasm_state %></td>
+        <td><%= function.start_at.strftime("%Y-%m-%d") %></td>
+        <td><%= function.end_at.strftime("%Y-%m-%d") %></td>
+        <td><%= function.tag_list %></td>
+        <td>
+          <%= link_to "수정", "#", class: "editBtn color-primary", data: {id: function.id} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>    
+</table>

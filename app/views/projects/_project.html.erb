@@ -1,0 +1,28 @@
+<style>
+  .project-image {
+    min-height: 400px; 
+    max-width:100%; 
+    max-height:100%; 
+    background-size: cover; 
+    background-position: center;
+    position: relative;
+  }
+  .project-name{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+</style>
+
+<div class="col-12 col-md-6 col-lg-4 d-flex flex-column bg-cover p-1">
+  <%= link_to project_path(project), class: "text-white" do %>
+    <div class="card project-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<%= project.image %>');">
+      <div class="card-body mt-auto mb-n11 py-8">
+        <h2 class="project-name font-weight-bolder">
+          <%= project.name %>
+          <%# fa_icon "chevron-right", text: "", right: true %>
+        </h2>
+      </div>
+    </div>
+  <% end %>
+</div>

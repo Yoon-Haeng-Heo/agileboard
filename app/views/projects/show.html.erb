@@ -1,0 +1,40 @@
+<div class="container">
+  <%= render 'shared/section',title: "Project Dashboard" %>
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#qwe">개발 추이</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#asd">개발자별 할당량</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#zxc">ZXC</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="qwe">
+          <%= area_chart @functions.group(:aasm_state).group_by_day(:updated_at).count %>
+      <div class="row">
+        <div class="col-8">
+          <%= bar_chart @functions.group(:aasm_state).count %>
+        </div>
+        <div class="col-4">
+          <div>프로젝트 시작일: <%= pretty_date @project.start_at %></div>
+          <div>프로젝트 마감일: <%= pretty_date @project.end_at %></div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="asd">
+      <% user_list = @project.users %>
+      <%= pie_chart @function_per_user %>
+      <%= bar_chart @functions.group(:aasm_state).count %>
+    </div>
+    <div class="tab-pane fade" id="zxc">
+    </div>
+  </div>
+  <!-- 통계 항목 -->
+
+  <!-- 기능 항목 -->
+  <%= render "functions/functions" %>
+</div>

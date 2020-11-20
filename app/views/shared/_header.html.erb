@@ -1,6 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light pl-4 py-3" style="background-color: rgb(9, 23, 41) !important;">
+<style>
+  .font-nav {
+    color: rgb(206, 206, 206) !important;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light pl-4 py-3" style="background-color: black !important;">
   <img src="/image/logo.png" class="mr-2" style="width: 30px; height: 30px;" alt="">
-  <a class="navbar-brand font-weight-bold text-white" href="/">Broken Sunset</a>
+  <a class="navbar-brand font-weight-bold font-nav" href="/">Broken Sunset</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,11 +14,11 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
     <ul class="navbar-nav">
       <li class="nav-item active mr-3">
-        <a class="nav-link text-white" href="/">홈 <span class="sr-only">(current)</span></a>
+        <a class="nav-link font-nav" href="/">홈 <span class="sr-only">(current)</span></a>
       </li>
       <% if current_user %>
         <li class="nav-item dropdown mr-3">
-          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle font-nav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             프로젝트 게시판
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -21,26 +27,26 @@
           </div>
         </li>
         <li class="nav-item mr-3">
-          <div class="nav-link text-white"><%= current_user.email %>님</div>
+          <div class="nav-link font-nav"><%= current_user.email %>님</div>
         </li>
         <li class="nav-item dropdown mr-3">
-          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle font-nav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             기능 게시판
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "기능 보기", functions_path, class: "dropdown-item" %>
+            <%= link_to "기능 보기", projects_path, class: "dropdown-item" %>
             <%= link_to "기능 생성", new_function_path, class: "dropdown-item" %>
           </div>
         </li>
         <li class="nav-item mr-3">
-          <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class: "nav-link text-white" %>
+          <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class: "nav-link font-nav" %>
         </li>
       <% else %>
         <li class="nav-item mr-3">
-          <%= link_to "로그인", new_user_session_path, class: "nav-link text-white" %>
+          <%= link_to "로그인", new_user_session_path, class: "nav-link font-nav" %>
         </li>
         <li class="nav-item mr-3">
-          <%= link_to "회원가입", new_user_registration_path, class: "nav-link text-white" %>
+          <%= link_to "회원가입", new_user_registration_path, class: "nav-link font-nav" %>
         </li>
       <% end %>
     </ul>

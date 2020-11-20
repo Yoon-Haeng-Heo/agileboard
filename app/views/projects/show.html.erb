@@ -45,4 +45,13 @@
 
   <!-- 기능 항목 -->
   <%= render "functions/functions" %>
+
+  <div>
+    <h5 class="mt-5 mb-2 mx-3">프로젝트 게시글</h5>
+    <div class="row justify-content-space-around">
+      <% @project.posts.each do |post| %>
+        <%= render post %>
+      <% end %>
+    </div>
+  </div>
 </div>

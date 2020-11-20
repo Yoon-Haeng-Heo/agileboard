@@ -1,36 +1,45 @@
-<div class="container">
-  <%= render 'shared/section',title: "Project Dashboard" %>
-
+<%= render 'shared/section',title: "Project Dashboard" %>
+<div class="container bg-white p-3 mb-3">
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#qwe">개발 추이</a>
+      <a class="nav-link active" data-toggle="tab" href="#status">프로젝트 개발 현황</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#asd">개발자별 할당량</a>
+      <a class="nav-link" data-toggle="tab" href="#process">개발 추이</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#zxc">ZXC</a>
+      <a class="nav-link" data-toggle="tab" href="#assign">개발자별 할당량</a>
     </li>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane fade show active" id="qwe">
-          <%= area_chart @functions.group(:aasm_state).group_by_day(:updated_at).count %>
-      <div class="row">
-        <div class="col-8">
-          <%= bar_chart @functions.group(:aasm_state).count %>
+    <div class="tab-pane fade show active" id="status">
+      <div class="row mt-3">
+        <div class="col-4 pr-0 justify-content-center float-right">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="<%= @project.image.url %>" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><%= @project.name %></h5>
+              <p class="card-text"></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">프로젝트 시작일: <%= pretty_date @project.start_at %></li>
+              <li class="list-group-item">프로젝트 마감일: <%= pretty_date @project.end_at %></li>
+            </ul>
+            <!-- <div class="card-body"></div> -->
+          </div>
         </div>
-        <div class="col-4">
-          <div>프로젝트 시작일: <%= pretty_date @project.start_at %></div>
-          <div>프로젝트 마감일: <%= pretty_date @project.end_at %></div>
+        <div class="col-8 pl-0">
+          <%= bar_chart @functions.group(:aasm_state).count %>
         </div>
       </div>
     </div>
-    <div class="tab-pane fade" id="asd">
+    <div class="tab-pane fade" id="process">
+      <%= area_chart @functions.group(:aasm_state).group_by_day(:updated_at).count %>
+    </div>
+    <div class="tab-pane fade" id="assign">
       <% user_list = @project.users %>
       <%= pie_chart @function_per_user %>
       <%= bar_chart @functions.group(:aasm_state).count %>
-    </div>
-    <div class="tab-pane fade" id="zxc">
     </div>
   </div>
   <!-- 통계 항목 -->

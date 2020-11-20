@@ -3,6 +3,7 @@ TITLES = ["Ruby On Rails", "Spring Boot", "React", "Node Express", "Php", "Pytho
 SIMAGES=['test1.jpg', 'test2.jpg', 'test3.jpg', 'test4.jpg', 'test5.jpg', 'app.png', 'rails1.png','8.app.jpg','9.ios.png','android1.jpg','html.jpg','ios.jpg','ios2.jpg','ios3.jpg','ios10.png','rails.png','rails3.png','react.jpg','react2.jpg','web.jpg']
 ROOT= "/public/image/seedimage/"
 STATUS= [:to_do,:in_progress,:complete ,:feedback, :end]
+FUNC_NAME = ["로그인 및 회원가입", "User", "active admin","로그인 및 회원가입 UI", "Post 기본 CRUD","Post 검색 기능", "Post UI","Project CRUD", "Project 검색 기능", "Project UI", "Function CRUD", "Function 그래프", "Function 검색 및 정렬", "Function UI", "배포"]
 # AdminUser.create!(email: 'admin@test.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
 
 def get_user
@@ -14,7 +15,8 @@ def get_users
 end
 
 def get_project
-  Project.order("RANDOM()").limit(1).first
+  #Project.order("RANDOM()").limit(1).first
+  Project.find_by(name: "Broken Sunset")
 end
 
 def destroy_all_data
@@ -32,11 +34,14 @@ def destroy_all_data
 end
 
 def generate_project title = "프로젝트"
-  5.times do 
-    image_field = File.open(("#{Rails.root}"+ROOT+SIMAGES.shuffle.first))
-    Project.create(name: TITLES.shuffle.first + " " + title, description: Faker::Lorem.sentence(word_count: 100), image: image_field, start_at: Date.today, end_at: Date.today + 5.days)
-    puts "프로젝트 생성"
-  end
+  image_field = File.open(("#{Rails.root}"+ROOT+SIMAGES.shuffle.first))
+  Project.create(name: "Broken Sunset", description: Faker::Lorem.sentence(word_count: 100), image: image_field, start_at: Date.today - 60.days, end_at: Date.today + 30.days, updated_at: Date.today)
+  puts "프로젝트 생성"
+  # 5.times do 
+  #   image_field = File.open(("#{Rails.root}"+ROOT+SIMAGES.shuffle.first))
+  #   Project.create(name: TITLES.shuffle.first + " " + title, description: Faker::Lorem.sentence(word_count: 100), image: image_field, start_at: Date.today, end_at: Date.today + 10.days, updated_at: Date.today + Random.rand(10).days)
+  #   puts "프로젝트 생성"
+  # end
 end
    
 def generate_users 
@@ -66,7 +71,7 @@ def generate_users
 end
 
 def generate_userprojects
-  15.times do
+  5.times do
     get_user.user_projects.create(project: get_project)
   end
   puts "프로젝트에 유저 추가"
@@ -81,11 +86,20 @@ def generate_posts
 end
 
 def generate_functions
-  20.times do
-    function = Function.new(title: Faker::Hacker.adjective + " 구현하기" ,description: Faker::Hacker.say_something_smart, start_at: Date.today, end_at: Date.today + 10.days , project: get_project, user_list: [], aasm_state: STATUS.shuffle.first)
+  FUNC_NAME.each_with_index do |name, index|
+    date = Date.today - (FUNC_NAME.count - index).days
+    state_index = STATUS.count - index/3 - 1
+    state_index = state_index + 1 if index % 3 == 0 && state_index != 4 && state_index != 0
+    puts state_index
+    function = Function.new(title: name + " 구현하기" , description: Faker::Hacker.say_something_smart, start_at: date, end_at: date + 10.days , project: get_project, user_list: [], updated_at: date + Random.rand(10).days, aasm_state: STATUS[state_index])
     function.user_list.add(get_users.ids)
     function.save
   end
+  # 20.times do
+  #   function = Function.new(title: Faker::Hacker.adjective + " 구현하기" ,description: Faker::Hacker.say_something_smart, start_at: Date.today, end_at: Date.today + 20.days , project: get_project, user_list: [], updated_at: Date.today + Random.rand(10).days, aasm_state: STATUS.shuffle.first)
+  #   function.user_list.add(get_users.ids)
+  #   function.save
+  # end
   puts "기능 생성"
 end
 

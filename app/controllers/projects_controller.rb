@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   end 
   
   def show
-    @functions = @project.functions
+    @functions = @project.functions.page(params[:page]).per(10)
     @function_per_user = []
     @project.users.each do |user|
       @function_per_user << [user.name, @project.functions.tagged_with(user.id).count ]

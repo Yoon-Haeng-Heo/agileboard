@@ -1,5 +1,6 @@
 ko:
   attributes:
+    to_do: 시작
 
   activerecord:
     attributes:
@@ -16,4 +17,4 @@ ko:
         image: 대표 이미지
         project: 프로젝트
         project_id: 프로젝트
-      
+       

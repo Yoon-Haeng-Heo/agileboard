@@ -1,5 +1,6 @@
 class Function < ApplicationRecord
   include AASM
+  # acts_as_list
 
   acts_as_taggable_on :tags
   acts_as_taggable_on :users

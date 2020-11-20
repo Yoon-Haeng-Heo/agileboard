@@ -55,6 +55,8 @@ gem "font-awesome-rails"
 # 멘션 기능
 gem 'tribute'
 
+gem 'acts_as_list'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'multi_json', '~> 1.11', '>= 1.11.2'

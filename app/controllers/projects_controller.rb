@@ -7,6 +7,13 @@ class ProjectsController < ApplicationController
   
   def show
     @functions = @project.functions
+    @function_per_user = []
+    @project.users.each do |user|
+      @function_per_user << [user.name, @project.functions.tagged_with(user.id).count ]
+    end
+
+    @sort = @functions.ransack(params[:q])
+    @sort_functions = @sort.result
   end
 
   private 

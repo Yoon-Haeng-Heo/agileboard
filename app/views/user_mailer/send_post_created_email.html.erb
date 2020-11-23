@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>게시글이 성공적으로 등록되었습니다.</h1>
+    <p>title:</p>
+      <%= @post_params[:title]%>
+    <hr/>
+    <p>body:</p>
+    <div>
+      <%=@post_params[:body]%>
+    </div>
+    <p>Author By  <%= @user.name %></p>
+  </body>
+</html>

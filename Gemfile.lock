@@ -136,6 +136,8 @@ GEM
     faker (2.14.0)
       i18n (>= 1.6, < 2)
     ffi (1.13.1)
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
     font-awesome-sass (5.13.0)
@@ -258,6 +260,7 @@ GEM
     ruby-vips (2.0.17)
       ffi (~> 1.9)
     ruby2_keywords (0.0.2)
+    ruby_http_client (3.5.1)
     rubyzip (2.3.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -278,6 +281,11 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sendgrid-actionmailer (3.1.1)
+      mail (~> 2.7)
+      sendgrid-ruby (~> 6.0)
+    sendgrid-ruby (6.3.7)
+      ruby_http_client (~> 3.4)
     socialization (1.2.3)
       activerecord
     spring (2.1.1)
@@ -348,6 +356,7 @@ DEPENDENCIES
   devise
   devise-i18n
   faker
+  figaro
   font-awesome-rails
   groupdate
   jbuilder (~> 2.7)
@@ -363,6 +372,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   select2-rails
   selenium-webdriver
+  sendgrid-actionmailer
   socialization
   spring
   spring-watcher-listen (~> 2.0.0)

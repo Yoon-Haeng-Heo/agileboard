@@ -110,10 +110,10 @@ def generate_functions_broken_sunset
     date = Date.today - (FUNC_NAME.count - index)*2.days
     state_index = STATUS.count - index/3 - 1
     state_index = state_index + 1 if index % 3 == 0 && state_index != 4 && state_index != 0
-    function = Function.new(title: name + " 구현하기" , description: Faker::Hacker.say_something_smart, start_at: date, end_at: date + 15.days , project: get_project_broken_sunset, user_list: [], updated_at: date, aasm_state: STATUS[state_index])
+    function = Function.new(title: name + " 구현하기" , description: Faker::Hacker.say_something_smart, start_at: date, end_at: date + 15.days , project: get_project_broken_sunset, user_list: [], updated_at: date, aasm_state: STATUS[state_index], to_do_updated_at: date, in_progress_updated_at: date+2.days, complete_updated_at: date+4.days, feedback_updated_at: date + 6.days,end_updated_at: date+10.days)
     function.user_list.add(get_users.ids)
     function.save
- end
+  end
  puts "broken sunset function 생성"
 end
 

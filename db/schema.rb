@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_10_064634) do
+ActiveRecord::Schema.define(version: 2020_11_22_135148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,11 @@ ActiveRecord::Schema.define(version: 2020_11_10_064634) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "aasm_state"
+    t.datetime "to_do_updated_at"
+    t.datetime "in_progress_updated_at"
+    t.datetime "complete_updated_at"
+    t.datetime "feedback_updated_at"
+    t.datetime "end_updated_at"
     t.index ["project_id"], name: "index_functions_on_project_id"
   end
 

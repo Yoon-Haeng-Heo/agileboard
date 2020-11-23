@@ -4,8 +4,10 @@
     <tr>
       <% [[:id, "항목"], [:title, "이름"], [:user_list, "참가자"], [:assm_state, "상태"], [:start_at, "시작일"], [:end_at, "마감일"], [:tag_list, "비고"]].each do |item| %>
         <th scope="col"><%= sort_link(@sort, item[0], item[1]) %></th>
-      <% end %>
+      <% end %> 
+      
       <th scope="col">기타</th>
+      <th scope="col">상태 변경</th>
     </tr>
   </thead>
 
@@ -26,13 +28,30 @@
         <td><%= function.tag_list %></td>
         <td>
           <%= link_to "수정", "#", class: "editBtn color-primary", data: {id: function.id} %>
-        </td>
+        </td> 
+        <td>
+          <%= link_to "상태 변경", "#", class: "changeStateBtn color-primary", data: {state: function.aasm_state, f: function} %>
+        </td> 
       </tr>
     <% end %>
   </tbody>
       
 </table>
 
-  <div class="pagination justify-content-center mt-3">
-    <%= paginate @functions %>
-  </div>
+<div class="pagination justify-content-center mt-3">
+  <%= paginate @functions %>
+</div>
+
+<div class="edit-modal"></div>
+
+<script>
+	$('.editBtn').click(function(e){
+    Rails.ajax({
+      url: "/functions/"+$(this).data("id")+"/edit",
+      type: "get",
+      success: function(data) {
+        $('#function-modal-' + $(this).data("id")).modal('show');
+      },
+      error: function(data) {}
+  });});
+</script>

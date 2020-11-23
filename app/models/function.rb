@@ -14,20 +14,38 @@ class Function < ApplicationRecord
     state :feedback
     state :end
 
-    event :progress do
-      transitions from: :to_do, to: :in_progress
+    event :progress  do
+      transitions from: :to_do, to: :in_progress, success: :set_progress_date
     end
 
     event :complete do
-      transitions from: :in_progress, to: :complete
+      transitions from: :in_progress, to: :complete, success: :set_complete_date
     end
 
     event :feedback do
-      transitions from: :complete, to: :feedback
+      transitions from: :complete, to: :feedback, success: :set_feedback_date
     end
 
     event :finish do
-      transitions from: :feedback, to: :end
+      transitions from: :feedback, to: :end, success: :set_finish_date
     end
   end
+  private 
+
+  def set_progress_date
+    update in_progress_updated_at: Time.zone.now
+  end
+
+  def set_complete_date
+    update complete_updated_at: Time.zone.now
+  end
+
+  def set_feedback_date
+    update feedback_updated_at: Time.zone.now
+  end
+
+  def set_finish_date
+    update end_updated_at: Time.zone.now
+  end
+  
 end

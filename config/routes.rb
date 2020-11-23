@@ -19,5 +19,10 @@ Rails.application.routes.draw do
     end
   end
   resources :comments
-  resources :functions
+  resources :functions do
+    member do
+      get :set_state
+    end
+  end
+
 end

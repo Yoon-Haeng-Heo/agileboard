@@ -6,12 +6,12 @@
   <body>
     <h1>게시글이 성공적으로 등록되었습니다.</h1>
     <p>title:</p>
-      <%= @post_params[:title]%>
+      <%= @post.title%>
     <hr/>
     <p>body:</p>
     <div>
-      <%=@post_params[:body]%>
+      <%=@post.body%>
     </div>
-    <p>Author By  <%= @user.name %></p>
+    <p>Author By  <%= User.find_by(id: @post.user_id).name %></p>
   </body>
 </html>

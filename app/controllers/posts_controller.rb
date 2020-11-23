@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i(index)
-  before_action :load_post, only: %i(show edit destroy)
+  before_action :load_post, only: %i(show edit destroy update)
 
   def search
     @result = Post.ransack(title_i_cont: params[:q], body_i_cont: params[:q], m: 'or').result.page(params[:page]).per(9)
@@ -10,7 +10,9 @@ class PostsController < ApplicationController
     @posts = Post.all.page(params[:page]).per(9)
   end
 
-  def new;end
+  def new
+    @post = Post.new
+  end
 
   def show
     @comments = Comment.where(commentable_id: @post.id).page(params[:page]).per(3)
@@ -19,10 +21,17 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.create post_params
     if @post  
-      UserMailer.send_post_created_email(current_user, post_params).deliver
+      UserMailer.send_post_created_email(@post).deliver
     end
     redirect_to root_path
   end 
+
+  def edit;end
+
+  def update
+    @post.update post_params
+    redirect_to root_path
+  end
 
   private
 

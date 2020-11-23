@@ -19,6 +19,7 @@
 //= require chartkick
 //= require Chart.bundle
 //= require tribute
+//= require_tree .
 
 tinyMCE.init({
   selector: "textarea.tinymce",

@@ -29,8 +29,10 @@
     selectTemplate: function (item) {
       return "@"+ item.original.name;
     },
+    menuContainer: document.form,
     lookup: 'name',
-    fillAttr: 'id'
+    fillAttr: 'id',
+    requireLeadingSpace: false
   });
   tribute.attach(document.getElementById('input_form'));
 </script>

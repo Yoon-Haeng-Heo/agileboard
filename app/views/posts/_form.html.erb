@@ -1,4 +1,4 @@
-<%= form_for Post.new do |f| %>
+<%= form_for @post do |f| %>
   <%= render 'shared/input', name: :title, type: :text_field, f: f, placeholder: "제목을 입력하세요" %>
   <%= f.label :image, class: "mt-3" %>
   <div class="upload-preview">
@@ -10,6 +10,8 @@
   <%= f.label :body %>
   <%= tinymce language: "en" %>
   <%= f.text_area :body, class: "form-control", rows: "20" %>
+  <%= f.label :user_list %>
+  <%= render 'shared/option_for_select', f: f, columns: :participant_list %>
   <%= f.submit "#{f.object.new_record? ? '등록' : '수정'}", class: 'btn btn-primary btn-block mt-3' %>
 <% end %>
 

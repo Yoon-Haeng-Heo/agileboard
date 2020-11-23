@@ -18,6 +18,9 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.create post_params
+    if @post  
+      UserMailer.send_post_created_email(current_user, post_params).deliver
+    end
     redirect_to root_path
   end 
 

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>You were mentioned in Comment</h1>
+    <div>
+      <%=@comment[:comment]%>
+    </div>
+    <p>Mentioned By  <%= User.find_by(id: @comment.user_id).name %></p>
+  </body>
+</html>

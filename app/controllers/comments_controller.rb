@@ -4,13 +4,17 @@ class CommentsController < ApplicationController
   
   def create
     mentionee = []
+    mention_email = []
     name_pattern = /[@|\s@][가-힣]\s[가-힣][가-힣]/
     extracted_names = params[:comment][:comment].scan(name_pattern)
     extracted_names.each do |name| mentionee << name[1..] end
     if mentionee.size != 0
       @comment = @commentable.comments.new
       @comment.comment =''
-      mentionee.each do |name| @comment.mention!(User.find_by(name: name)) end
+      mentionee.each do |name| 
+        @comment.mention!(User.find_by(name: name))
+        mention_email << User.find_by(name: name).email
+      end
       params[:comment][:comment].each_char do |char|
         if char != '@'
           @comment.comment += char 
@@ -20,6 +24,7 @@ class CommentsController < ApplicationController
       @comment.commentable_type = params[:comment][:commentable_type]
       @comment.user_id = params[:comment][:user_id]
       @comment.save
+      UserMailer.send_comment_mentioned_email(mention_email, @comment).deliver
     else
       @comment = @commentable.comments.create comment_params
     end

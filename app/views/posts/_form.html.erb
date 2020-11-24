@@ -9,7 +9,7 @@
   <%= f.select :project_id, options_for_select(Project.all.map {|p| [p.name, p.id]}), {}, class: "form-control mb-3" %>
   <%= f.label :body %>
   <%= tinymce language: "en" %>
-  <%= f.text_area :body, class: "form-control", rows: "20" %>
+  <%= f.text_area :body, class: "form-control tinymce", rows: "20" %>
   <%= f.label :user_list %>
   <%= render 'shared/option_for_select', f: f, columns: :participant_list %>
   <%= f.submit "#{f.object.new_record? ? '등록' : '수정'}", class: 'btn btn-primary btn-block mt-3' %>

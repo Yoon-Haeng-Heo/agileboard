@@ -8,22 +8,8 @@
   <%= f.submit "입력", class: "btn btn-primary btn-md" %>
 <% end %>
 
-<%
-  key_value_pairs = User.all.map do |user|
-                      [user.id,user.name]
-                    end
-  @mentionee = Hash[*key_value_pairs.flatten]
-%>
-
 <script>
-  var users = JSON.parse('<%=raw @mentionee.to_json%>');
-  var mentionee = new Array();
-  for(id in users){
-    var tmp = new Object();
-    tmp.name = users[id];
-    tmp.id = id.toString();
-    mentionee.push(tmp);
-  }
+  mentionee = <%= raw User.pluck(:id, :name).compact.collect { |user_info| {id: user_info[0], name: user_info[1]} }.to_json %>;
   var tribute = new Tribute({ 
     values: mentionee,
     selectTemplate: function (item) {
@@ -32,7 +18,6 @@
     menuContainer: document.form,
     lookup: 'name',
     fillAttr: 'id',
-    requireLeadingSpace: false
   });
   tribute.attach(document.getElementById('input_form'));
 </script>

@@ -1,11 +1,17 @@
 class ProjectsController < ApplicationController
   before_action :load_project, only: %i(show)
+  before_action :check_owner, only: %i(show)
 
   def index 
     @projects = Project.all
   end 
   
   def show
+    # 채팅방 로드
+    session[:conversations] ||= []
+    @users = User.all.where.not(id: current_user)
+    @conversations = Conversation.includes(:project, :messages).find(session[:conversations])
+
     @functions = @project.functions.page(params[:page]).per(10)
     @function_per_user = []
     @project.users.each do |user|
@@ -62,6 +68,12 @@ class ProjectsController < ApplicationController
   def load_project
     @project = Project.find_by(id: params[:id])
   end 
+
+  def check_owner
+    unless @project.users.include?(current_user)
+      redirect_to root_path, notice: "접근권한이 없습니다"
+    end
+  end
 
   def calculate_count(functions,h,date)
     new_hash = Hash.new

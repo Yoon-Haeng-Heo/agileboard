@@ -1,0 +1,47 @@
+<style> 
+.message-sent {
+  position: relative;
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+  margin: 5px 20px;
+  padding: 10px;
+  margin-left:auto;
+  margin-right: 30px;
+  float: right;
+}
+.message-sent-date {
+  margin-right: 10px;
+  float: right;
+  font-size: 14px;
+}
+.message-received {
+  background-color: #F1F0F0;
+  border-color: #EEEEEE;
+  margin: 5px 20px;
+  padding: 10px;
+  float: left;
+}
+.message-received-date {
+  margin-left: 10px;
+  float: left;
+  font-size: 14px;
+}
+</style>
+
+<li style="list-style-type: none;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="<%= current_user.id == message.user_id ? 'message-sent' : 'message-received' %>">
+          <%= content_tag(:div, message.body, style: "white-space: pre-wrap;") %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <p class="<%= current_user.id == message.user_id ? 'message-sent-date' : 'message-received-date' %>">
+        <span class="font-weight-bold mr-1"><%= message.user.name %></span>
+        <span class="fs-10 text-gray"><%= pretty_time message.created_at %></span>
+      </p>
+    </div>
+  </div>
+</li>

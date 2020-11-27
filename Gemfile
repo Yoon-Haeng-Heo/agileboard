@@ -50,7 +50,6 @@ gem 'acts_as_commentable'
 gem 'aasm', '~> 5.1.1'
 gem "chartkick"
 gem 'groupdate'
-gem "font-awesome-rails"
 
 # 멘션 기능
 gem 'tribute'

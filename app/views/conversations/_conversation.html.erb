@@ -1,0 +1,25 @@
+<style>
+.messages-list {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+</style>
+
+<li style="list-style-type: none;">
+  <div class="panel panel-default" data-conversation-id="<%= conversation.id %>">
+    <div class="panel-body" style="display: none;">
+      <div class="messages-list">
+        <ul class="mx-2">
+          <% conversation.messages.each do |message| %>
+            <%= render message %>
+          <% end %>
+        </ul>
+      </div>
+      <%= form_for [conversation, conversation.messages.new], remote: true do |f| %>
+        <%= f.text_area :body, class: "form-control", required: true %>
+        <%= f.submit "전송", class: "btn btn-primary mt-2" %>
+      <% end %>
+    </div>
+  </div>
+</li>

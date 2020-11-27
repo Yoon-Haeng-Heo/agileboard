@@ -1,3 +1,9 @@
+<style>
+.project-conversations {
+  border: 1px solid #ededed;
+}
+</style>
+
 <%= render 'shared/section',title: "Project Dashboard" %>
 <div class="container bg-white p-3 mb-3">
   <ul class="nav nav-tabs">
@@ -25,7 +31,6 @@
               <li class="list-group-item">프로젝트 시작일: <%= pretty_date @project.start_at %></li>
               <li class="list-group-item">프로젝트 마감일: <%= pretty_date @project.end_at %></li>
             </ul>
-            <!-- <div class="card-body"></div> -->
           </div>
         </div>
         <div class="col-8 pl-0">
@@ -50,8 +55,22 @@
   <!-- 기능 항목 -->
   <%= render "functions/functions" %>
 
+  <!-- 프로젝트 채팅 -->
   <div>
-    <h5 class="mt-5 mb-2 mx-3">프로젝트 게시글</h5>
+    <h5 class="mt-5 mb-2">채팅방</h5>
+    <div class="project-conversations">
+      <div class="col-md-12">
+        <ul id="conversations-list">
+          <% @conversations.each do |conversation| %>
+            <%= render 'conversations/conversation', conversation: conversation %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h5 class="mt-5 mb-2">프로젝트 게시글</h5>
     <div class="row justify-content-space-around">
       <% @project.posts.each do |post| %>
         <%= render post %>
@@ -59,3 +78,16 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(function(){
+    Rails.ajax({
+      url: "<%= conversations_path(project_id: @project.id) %>",
+      type: "POST",
+      success: function(data) {
+        console.log("load chatting room...")
+      },
+      error: function(data) {}
+    });
+  })
+</script>

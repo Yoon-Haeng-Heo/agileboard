@@ -1,6 +1,107 @@
-<div class="container my-4">
-  <div class="active-pink-3 active-pink-4 mb-4">
-    <input class="form-control" type="text" placeholder="제목을 검색해보세요" aria-label="Search">
+<style>
+  body, html {
+    height: 100%;
+  }
+.hero-image.main-hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/image/hero.jpg");
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.hero-image.project-hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/image/project.jpg");
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.hero-image.board-hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/image/bullet.jpg");
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.hero-text {
+  text-align: left;
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+.hero-text > img {
+  max-height: 400px;
+  max-width: 400px;
+}
+.home-card {
+  border: none;
+}
+</style>
+
+<div class="hero-image main-hero-image">
+  <div class="hero-text">
+    <h1 class="mt-3 ml-5">프로젝트 관리를 위한 효율적인 협업 툴</h1>
+    <h4 class="mt-4 ml-5">Broken Sunset을 이용하여 효율적인 태스크 관리와 이슈사항을 공유하세요</h4>
   </div>
 </div>
 
+<div class="text-center" style="height: 50%;">
+  <h1 class="font-bold mt-5 mb-2">Broken Sunset</h1>
+  <h6 class="font-bold">아래 서비스를 이용해 보세요.</h6>
+  <div class="row mx-5" style="margin-top: 80px;">
+    <div class="card home-card col-md-3" style="width: 18rem;">
+      <div class="card-body">
+        <i class="fas fa-chart-line mb-4" style="font-size: 60px;"></i>
+        <h4 class="card-title">통계 기능</h4>
+        <h5 class="card-subtitle mt-2 text-muted">프로젝트 진행 사항을 한눈에</h5>
+      </div>
+    </div>
+    <div class="card home-card col-md-3" style="width: 18rem;">
+      <div class="card-body">
+        <i class="fas fa-clipboard-list mb-4" style="font-size: 60px;"></i>
+        <h4 class="card-title">게시판 기능</h4>
+        <h5 class="card-subtitle mt-2 text-muted">진행/이슈 사항을 프로젝트 별로 정리</h5>
+      </div>
+    </div>
+    <div class="card home-card col-md-3" style="width: 18rem;">
+      <div class="card-body">
+        <i class="fas fa-comments mb-4" style="font-size: 60px;"></i>
+        <h4 class="card-title">채팅 기능</h4>
+        <h5 class="card-subtitle mt-2 text-muted">프로젝트에 참여한 사람끼리 간편하게</h5>
+      </div>
+    </div>
+    <div class="card home-card col-md-3" style="width: 18rem;">
+      <div class="card-body">
+        <i class="fas fa-envelope mb-4" style="font-size: 60px;"></i>
+        <h4 class="card-title">알림 기능</h4>
+        <h5 class="card-subtitle mt-2 text-muted">변경사항을 알림을 통해 빠르게</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hero-image project-hero-image">
+  <div class="hero-text">
+    <div class="row mt-5 ml-5">
+      <i class="fas fa-chevron-right mt-1" style="font-size: 25px;"></i>
+      <h3 class="ml-2">프로젝트를 생성하고 관리해보세요</h3>
+    </div>
+    <div class="row mt-5 ml-5">
+      <i class="fas fa-chevron-right mt-1" style="font-size: 25px;"></i>
+      <h3 class="ml-2">프로젝트별 기능을 등록하고 통계를 확인해보세요</h3>
+    </div>
+    <div class="row mt-5 ml-5">
+      <i class="fas fa-chevron-right mt-1" style="font-size: 25px;"></i>
+      <h3 class="ml-2">프로젝트별 채팅을 통해 간편하게 소통해보세요</h3>
+    </div>
+    <div class="row mt-5 ml-5">
+      <i class="fas fa-chevron-right mt-1" style="font-size: 25px;"></i>
+      <h3 class="ml-2">메일을 통해 프로젝트 내 이슈사항을 받아보세요</h3>
+    </div>
+  </div>
+</div>

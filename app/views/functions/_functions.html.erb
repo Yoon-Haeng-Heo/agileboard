@@ -1,11 +1,10 @@
-<h5 class="mt-5 mb-2 mx-3">프로젝트 구현 항목</h5>
-<table class="table mx-3">
+<h5 class="mt-5 mb-2">프로젝트 구현 항목</h5>
+<table class="table">
   <thead>
     <tr>
       <% [[:id, "항목"], [:title, "이름"], [:user_list, "참가자"], [:assm_state, "상태"], [:start_at, "시작일"], [:end_at, "마감일"], [:tag_list, "비고"]].each do |item| %>
         <th scope="col"><%= sort_link(@sort, item[0], item[1]) %></th>
       <% end %> 
-      
       <th scope="col">기타</th>
       <th scope="col">상태 변경</th>
     </tr>
@@ -22,7 +21,7 @@
             <span class="mx-1 color-primary">#&nbsp;<%= users %></span>
           <% end %>
         </td>
-        <td class="badge badge-primary" style="padding: 7px; margin: 10px; "><%= function.aasm_state %></td>
+        <td class="badge badge-primary" style="padding: 7px; margin: 10px; "><%= I18n.t("enum.function.aasm_state.#{function.aasm_state}") %></td>
         <td><%= function.start_at.strftime("%Y-%m-%d") %></td>
         <td><%= function.end_at.strftime("%Y-%m-%d") %></td>
         <td><%= function.tag_list %></td>

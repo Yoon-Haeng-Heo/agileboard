@@ -17,4 +17,13 @@ ko:
         image: 대표 이미지
         project: 프로젝트
         project_id: 프로젝트
-       
+        
+  enum:
+    function:
+      aasm_state:
+        to_do: 시작 전
+        in_progress: 진행중
+        complete: 완료
+        feedback: 피드백 수정
+        end: 종료
+          

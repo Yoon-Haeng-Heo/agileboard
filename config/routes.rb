@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
+  mount ActionCable.server => '/cable'
   ActiveAdmin.routes(self)
-  devise_for :users
-  root 'posts#index'
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+  root 'home#index'
+  get 'home/index'
+
+  resources :conversations, only: [:create] do
+    member do
+        post :close
+    end
+  resources :messages, only: [:create]
+end
 
   resources :projects do
     collection do
@@ -19,6 +28,7 @@ Rails.application.routes.draw do
     end
   end
   resources :comments
+  resources :messages
   resources :functions do
     member do
       get :set_state

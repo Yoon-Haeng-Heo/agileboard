@@ -25,6 +25,21 @@ class User::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
+  def destroy
+    Message.all.each do |x|
+        if current_user.id == x.user_id
+            x.destroy
+        end
+    end
+  
+    Conversation.all.each do |y|
+        if current_user.id == y.sender_id
+            y.destroy
+        end
+    end
+    super
+  end
+  
   # def destroy
   #   super
   # end

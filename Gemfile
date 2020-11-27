@@ -53,6 +53,7 @@ gem 'groupdate'
 
 # 멘션 기능
 gem 'tribute'
+gem 'jquery-atwho-rails'
 
 gem 'acts_as_list'
 

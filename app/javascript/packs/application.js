@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 require("@rails/activestorage").start()
-require("channels")
+require("@rails/actioncable")
 require("jquery")
 require("chartkick")
 require("chart.js")

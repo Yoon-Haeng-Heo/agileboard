@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     if @post  
       UserMailer.send_post_created_email(@post).deliver
     end
-    redirect_to root_path
+    redirect_to posts_path
   end 
 
   def edit;end

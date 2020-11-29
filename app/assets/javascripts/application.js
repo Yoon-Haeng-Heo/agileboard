@@ -18,8 +18,7 @@
 //= require select2
 //= require chartkick
 //= require Chart.bundle
-//= require tribute
-//= require jquery.atwho
+//= require select2
 //= require_tree .
 
 tinyMCE.init({

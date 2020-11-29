@@ -53,9 +53,9 @@ gem 'groupdate'
 
 # 멘션 기능
 gem 'tribute'
-gem 'jquery-atwho-rails'
-
+gem 'redcarpet'
 gem 'acts_as_list'
+gem 'select2-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

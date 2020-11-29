@@ -1,23 +1,23 @@
-<%= form_for @comment ||= Comment.new, method: :post,remote: true do |f|%>
+<script>
+$(document).ready(function() {
+    $('#select-mentionable').select2({ });
+});
+</script>
+<%= form_for @comment ||= Comment.new, method: :post, remote: true do |f|%>
   <div class="form-group">
-  <%= f.text_area :comment, id: "input_form", class: "form-control", placeholder: "입력 란" %> 
-  <%= f.hidden_field :commentable_type, value: "Posts" %>
-  <%= f.hidden_field :commentable_id, value: commentable.id %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.text_area :comment, id: "input_form", class: "form-control", placeholder: "입력 란" %>
+    <%= f.hidden_field :commentable_type, value: "Posts" %>
+    <%= f.hidden_field :commentable_id, value: commentable.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <p></p>
+    <div>
+      <%= f.fields_for :mention, Mention.new do |mention_attribute| %>
+        <%= mention_attribute.select :mentionable_id, User.all.map{|user| [user.name, user.id]}, 
+        class: 'form-control', 
+        id: 'select-mentionable', 
+        multiple: true %>
+      <%end%>
+    </div>
   </div>
   <%= f.submit "입력", class: "btn btn-primary btn-md" %>
 <% end %>
-
-<script>
-  mentionee = <%= raw User.pluck(:id, :name).compact.collect { |user_info| {id: user_info[0], name: user_info[1]} }.to_json %>;
-  var tribute = new Tribute({ 
-    values: mentionee,
-    selectTemplate: function (item) {
-      return "@"+ item.original.name;
-    },
-    menuContainer: document.form,
-    lookup: 'name',
-    fillAttr: 'id',
-  });
-  tribute.attach(document.getElementById('input_form'));
-</script>

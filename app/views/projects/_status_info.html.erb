@@ -41,6 +41,7 @@
     </div>
   </div>
   <div class="col-8 pl-0">
+    <div class="mt-2 mb-3 text-center">프로젝트 태스크 현황</div>
     <%= bar_chart(시작전: project.functions.to_do.count, 진행중: project.functions.in_progress.count, 완료: project.functions.complete.count, 피드백: project.functions.feedback.count, 종료: project.functions.end.count) %>
   </div>
 </div>

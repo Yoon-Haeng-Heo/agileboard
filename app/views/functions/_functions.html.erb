@@ -1,12 +1,25 @@
+<style>
+  .pagination .page.current {
+    background-color: transparent !important;
+    color: rgb(7, 3, 130) !important;
+    padding: 0 8px 0 8px !important;
+  }
+  .state-border {
+    border: 1px solid rgb(7, 3, 130);
+    border-radius: 5px;
+    padding: 5px;
+  }
+</style>
+
 <h5 class="mt-5 mb-2">프로젝트 구현 항목</h5>
 <table class="table">
   <thead>
     <tr>
-      <% [[:id, "항목"], [:title, "이름"], [:user_list, "참가자"], [:assm_state, "상태"], [:start_at, "시작일"], [:end_at, "마감일"], [:tag_list, "비고"]].each do |item| %>
+      <% [[:id, "항목"], [:title, "이름"], [:user_list, "참가자"], [:start_at, "시작일"], [:end_at, "마감일"]].each do |item| %>
         <th scope="col"><%= sort_link(@sort, item[0], item[1]) %></th>
       <% end %> 
-      <th scope="col">기타</th>
-      <th scope="col">상태 변경</th>
+      <th scope="col"><a class="pl-0" href="#">기타</a></th>
+      <th scope="col"><a class="pl-0" href="#">상태</a></th>
     </tr>
   </thead>
 
@@ -21,15 +34,16 @@
             <span class="mx-1 color-primary">#&nbsp;<%= users %></span>
           <% end %>
         </td>
-        <td class="badge badge-primary" style="padding: 7px; margin: 10px; "><%= I18n.t("enum.function.aasm_state.#{function.aasm_state}") %></td>
+        <!-- <td class="badge badge-primary" style="padding: 7px; margin: 10px; "><%= I18n.t("enum.function.aasm_state.#{function.aasm_state}") %></td> -->
         <td><%= function.start_at.strftime("%Y-%m-%d") %></td>
         <td><%= function.end_at.strftime("%Y-%m-%d") %></td>
-        <td><%= function.tag_list %></td>
         <td>
           <%= link_to "수정", "#", class: "editBtn color-primary", data: {id: function.id} %>
         </td> 
         <td>
-          <%= link_to "상태 변경", "#", class: "changeStateBtn color-primary", data: {state: function.aasm_state, f: function} %>
+          <% %i(to_do in_progress complete feedback end).each do |state| %>
+            <a href="#" class="changeStateBtn mr-3 <%= function.aasm_state.eql?(state.to_s) ? "color-primary state-border" : "text-gray"%>"><%= I18n.t("enum.function.aasm_state.#{state}") %></a>
+          <% end %>
         </td> 
       </tr>
     <% end %>
@@ -52,5 +66,18 @@
         $('#function-modal-' + $(this).data("id")).modal('show');
       },
       error: function(data) {}
-  });});
+    });
+  });
+
+  $(".changeStateBtn").click(function(){
+    alert("hi")
+    Rails.ajax({
+      url: "/functions/"+$(this).data("id")+"/edit",
+      type: "get",
+      success: function(data) {
+        $('#function-modal-' + $(this).data("id")).modal('show');
+      },
+      error: function(data) {}
+    });
+  })
 </script>

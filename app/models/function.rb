@@ -15,19 +15,19 @@ class Function < ApplicationRecord
     state :end
 
     event :progress  do
-      transitions from: :to_do, to: :in_progress, success: :set_progress_date
+      transitions from: [:to_do, :in_progress, :complete, :feedback, :end], to: :in_progress, success: :set_progress_date
     end
 
     event :complete do
-      transitions from: :in_progress, to: :complete, success: :set_complete_date
+      transitions from: [:to_do, :in_progress, :complete, :feedback, :end], to: :complete, success: :set_complete_date
     end
 
     event :feedback do
-      transitions from: :complete, to: :feedback, success: :set_feedback_date
+      transitions from: [:to_do, :in_progress, :complete, :feedback, :end], to: :feedback, success: :set_feedback_date
     end
 
     event :finish do
-      transitions from: :feedback, to: :end, success: :set_finish_date
+      transitions from: [:to_do, :in_progress, :complete, :feedback, :end], to: :end, success: :set_finish_date
     end
   end
   private 

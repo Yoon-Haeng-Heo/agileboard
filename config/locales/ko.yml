@@ -29,6 +29,6 @@ ko:
         to_do: 시작 전
         in_progress: 진행중
         complete: 완료
-        feedback: 피드백 수정
+        feedback: 피드백
         end: 종료
           

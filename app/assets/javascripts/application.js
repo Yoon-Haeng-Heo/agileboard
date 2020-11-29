@@ -28,6 +28,8 @@ tinyMCE.init({
 });
 
 (function () {
+  Chartkick.configure({ language: "ko"})
+
   $(document).on('click', '.toggle-window', function (e) {
     e.preventDefault();
     var panel = $(this).parent().parent();

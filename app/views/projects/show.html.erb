@@ -29,8 +29,7 @@
       <%= line_chart @res %> 
     </div>
     <div class="tab-pane fade" id="assign">
-      <% user_list = @project.users %>
-      <%= pie_chart @function_per_user %>
+      <%= render "assign_info", project: @project %>
     </div>
   </div>
   <!-- 통계 항목 -->

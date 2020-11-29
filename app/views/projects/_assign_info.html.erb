@@ -1,0 +1,20 @@
+<% user_list = project.users %>
+<%= pie_chart @function_per_user %>
+  <% arr = []%>
+<% change_arr = []%>
+<% new_arr = Function.aasm.states.map(&:name)%>
+<% new_arr.each do |key|%>
+  <% change_arr.push(I18n.t(key)) %>
+<% end %>
+
+<% new_hash = Hash[*new_arr.zip(change_arr).flatten] %>
+<%= new_hash %>
+<% user_list.each do |user| %>
+  <% h = Hash.new %>
+  <% h[:name] = user.name %>
+  <% h[:data] = project.functions.tagged_with(user.id).group(:aasm_state).count %>
+  
+  <% arr.push(h)%>
+<% end %>
+<%= column_chart arr %>
+

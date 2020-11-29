@@ -71,7 +71,7 @@ class ProjectsController < ApplicationController
 
   def check_owner
     unless @project.users.include?(current_user)
-      redirect_to root_path, notice: "접근권한이 없습니다"
+      redirect_to root_path, alert: "접근권한이 없습니다"
     end
   end
 

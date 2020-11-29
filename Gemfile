@@ -51,6 +51,9 @@ gem 'aasm', '~> 5.1.1'
 gem "chartkick"
 gem 'groupdate'
 
+# flash alert
+gem "bootstrap_flash_messages", "~> 1.0.1"
+
 # 멘션 기능
 gem 'tribute'
 gem 'redcarpet'

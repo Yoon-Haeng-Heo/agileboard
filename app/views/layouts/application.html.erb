@@ -40,12 +40,53 @@
       .text-gray {
         color: gray;
       }
+      .alert-container {
+        margin: 0 auto;
+        max-width: 1100px;
+      }
+      .alert-notification {
+        position: fixed;
+        width:inherit;
+        max-width:inherit;
+        z-index: 1000;
+        padding: 0.75rem 1.25rem;
+        margin-top: 0.3rem;
+        opacity: 0.9;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 3px;
+      }
     </style>
   </head>
 
   <body>
     <%= render 'shared/header' %>
     <%= tinymce_assets %>
+    <div class="container alert-container">
+      <% if notice %>
+        <div class="alert alert-notification alert-success">
+          <%= notice %>
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-notification alert-danger">
+          <%= alert %>
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        </div>
+      <% end %>
+    </div>
+    
     <%= yield %>
+
+    <script type="text/javascript">
+      <% if notice.present? || alert.present? %>
+        $(function() {
+          $(".alert-notification").fadeTo(3000, 0.9).slideUp(500, function(){
+            $(".alert-notification").alert('close');
+          })
+        })
+      <% end %>
+    </script>
   </body>
 </html>

@@ -1,8 +1,3 @@
-<script>
-$(document).ready(function() {
-    $('#select-mentionable').select2({ });
-});
-</script>
 <%= form_for @comment ||= Comment.new, method: :post, remote: true do |f|%>
   <div class="form-group">
     <%= f.text_area :comment, id: "input_form", class: "form-control", placeholder: "입력 란" %>
@@ -10,14 +5,17 @@ $(document).ready(function() {
     <%= f.hidden_field :commentable_id, value: commentable.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <p></p>
-    <div>
-      <%= f.fields_for :mention, Mention.new do |mention_attribute| %>
-        <%= mention_attribute.select :mentionable_id, User.all.map{|user| [user.name, user.id]}, 
-        class: 'form-control', 
-        id: 'select-mentionable', 
-        multiple: true %>
-      <%end%>
-    </div>
+    <%= f.fields_for :mention, Mention.new do |mention_attribute| %>
+      <%= mention_attribute.select :mentionable_id, 
+        User.all.map{|user| [user.name, user.id]},
+        class: 'select-mentionable'
+      %>
+    <%end%>
   </div>
   <%= f.submit "입력", class: "btn btn-primary btn-md" %>
 <% end %>
+
+<select class="js-states" name="state">
+  <option value="AL">Alabama</option>
+  <option value="WY">Wyoming</option>
+</select>

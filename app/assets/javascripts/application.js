@@ -18,7 +18,6 @@
 //= require select2
 //= require chartkick
 //= require Chart.bundle
-//= require select2
 //= require_tree .
 
 tinyMCE.init({
@@ -43,3 +42,4 @@ tinyMCE.init({
     }
   });
 })();
+

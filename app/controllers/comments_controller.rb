@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   before_action :load_comment, only: %i(destroy)
   
   def create
+    byebug
     mentionee = []
     mention_email = []
     name_pattern = /[@|\s@][가-힣]\s[가-힣][가-힣]/

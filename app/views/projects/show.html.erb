@@ -26,6 +26,7 @@
       <%# <%= line_chart @functions.group(:aasm_state).group_by_day(:start_at, last: 30).count, xtitle: "date", ytitle: "value" %> 
       <%# <%= line_chart @time_hash.group(:key), xtitle: "date", ytitle: "value" %>
       <%# <%= @time_arr.pluck(:to_do_updated_at) %>
+     <div class="my-5 text-center">상태별 날짜 당 기능 수</div>
       <%= line_chart @res %> 
     </div>
     <div class="tab-pane fade" id="assign">

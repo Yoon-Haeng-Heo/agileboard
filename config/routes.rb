@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   mount ActionCable.server => '/cable'
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users
   root 'home#index'
   get 'home/index'
 

@@ -2,9 +2,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+        :recoverable, :rememberable, :validatable
 
-  PARAMETERS = %i(name phone user_type)
+  USER_COLUMNS = %i(name phone user_type)
   
   has_many :user_projects
   has_many :projects, through: :user_projects

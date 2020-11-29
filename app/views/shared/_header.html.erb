@@ -26,9 +26,6 @@
             <%= link_to "게시글 생성", new_post_path, class: "dropdown-item" %>
           </div>
         </li>
-        <li class="nav-item mr-3">
-          <div class="nav-link font-nav"><%= current_user.email %>님</div>
-        </li>
         <li class="nav-item dropdown mr-3">
           <a class="nav-link dropdown-toggle font-nav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             기능 게시판
@@ -37,6 +34,9 @@
             <%= link_to "기능 보기", projects_path, class: "dropdown-item" %>
             <%= link_to "기능 생성", new_function_path, class: "dropdown-item" %>
           </div>
+        </li>
+        <li class="nav-item mr-3">
+          <div class="nav-link font-nav"><%= current_user.email %>님</div>
         </li>
         <li class="nav-item mr-3">
           <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class: "nav-link font-nav" %>

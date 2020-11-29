@@ -12,12 +12,12 @@
     <% new_arr.each do |key|%>
       <% change_arr.push(I18n.t(key)) %>
     <% end %>
-
-    <% new_hash = Hash[*new_arr.zip(change_arr).flatten] %>
+    <%= new_hash = Hash[*new_arr.zip(change_arr).flatten] %>
     <% user_list.each do |user| %>
       <% h = Hash.new %>
       <% h[:name] = user.name %>
-      <% h[:data] = project.functions.tagged_with(user.id).group(:aasm_state).count %>
+      <% h[:data] = project.functions.tagged_with(user.id).group(:aasm_state).count.transform_keys{|k| k.to_sym} %>
+      <% h[:data].transform_keys!(&new_hash.method(:[])) %>
       <% arr.push(h)%>
     <% end %>
     <%= column_chart arr %>

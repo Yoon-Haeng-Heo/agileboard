@@ -8,14 +8,20 @@
     <%= f.fields_for :mention, Mention.new do |mention_attribute| %>
       <%= mention_attribute.select :mentionable_id, 
         User.all.map{|user| [user.name, user.id]},
-        class: 'select-mentionable'
+        class: 'form-control',
+        id: 'select-mentionable'
       %>
     <%end%>
   </div>
   <%= f.submit "입력", class: "btn btn-primary btn-md" %>
 <% end %>
 
-<select class="js-states" name="state">
-  <option value="AL">Alabama</option>
-  <option value="WY">Wyoming</option>
-</select>
+<script>
+$('#select-mentionable').select2({
+    placeholder: 'Select mentionee'
+});
+$('#select-mentionable').on('select2:select', function(e){
+  var id = e.params.data.id;
+  var value = $(this).val();
+});
+</script>

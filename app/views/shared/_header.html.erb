@@ -31,8 +31,9 @@
             프로젝트 게시판 
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "프로젝트 생성", new_admin_project_path, class: "dropdown-item" %>
             <%= link_to "프로젝트 보기", projects_path, class: "dropdown-item" %>
-            <%= link_to "프로젝트 생성", new_function_path, class: "dropdown-item" %>
+            <%= link_to "기능 생성", new_function_path, class: "dropdown-item" %>
           </div>
         </li>
         <li class="nav-item mr-3">
